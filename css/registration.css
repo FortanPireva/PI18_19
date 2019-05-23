@@ -1,11 +1,12 @@
 body {
     font-family: Verdana, Geneva, sans-serif;
     font-size: 14px;
-    background: #f2f2f2;
-  }
+    background-image:  url("airplane.jpg");
+    background-repeat: no-repeat;
+   }
   
   .clearfix:after {
-    content: "";
+    content: "";  
     display: block;
     clear: both;
     visibility: hidden;
@@ -404,4 +405,21 @@ body {
     .remember_me {
       padding-bottom: 20px;
     }
+    
   }
+  /* Dim background effect */
+	.dim-overlay {
+		display: block;
+	}
+	.dim-overlay:before {
+		content: "";
+		background-color: rgba(0, 0, 0, .25);
+		height: 100vh;
+		left: 0;
+		position: fixed;
+		top: 0;
+		width: 100%;
+		overflow: hidden;
+		z-index: 2;
+	}
+  

@@ -78,7 +78,7 @@ class db_connector {
   public function connect()
   {
     global $config;
-    $this->connection=mysqli_connect($config['db']['host'],$config['db']['user'],$config['db']['password'],$config['db']  ['dbname']);
+    $this->connection=mysqli_connect($config['db']['host'],$config['db']['user'],$config['db']['password'],$config['db']['dbname']);
     if(!$this->connection)
      {
        die('Connection failed');
