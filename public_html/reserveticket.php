@@ -9,7 +9,7 @@
 <html>
 <head>
 	<title>Flight Ticket Booking a Flat Responsive Widget Template :: w3layouts</title>
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="../css/style.css">
 	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 	<link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -258,8 +258,8 @@
 		<p class="agileinfo"> &copy; 2016 Flight Ticket Booking . All Rights Reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
 	</div>
 	<!--script for portfolio-->
-		<script src="js/jquery.min.js"> </script>
-		<script src="js/easyResponsiveTabs.js" type="text/javascript"></script>
+		<script src="../js/jquery.min.js"> </script>
+		<script src="../js/easyResponsiveTabs.js" type="text/javascript"></script>
 		<script type="text/javascript">
 			$(document).ready(function () {
 				$('#horizontalTab').easyResponsiveTabs({
@@ -271,8 +271,8 @@
 		</script>
 		<!--//script for portfolio-->
 				<!-- Calendar -->
-				<link rel="stylesheet" href="css/jquery-ui.css" />
-				<script src="js/jquery-ui.js"></script>
+				<link rel="stylesheet" href="../css/jquery-ui.css" />
+				<script src="../js/jquery-ui.js"></script>
 				  <script>
 						  $(function() {
 							$( "#datepicker,#datepicker1,#datepicker2,#datepicker3" ).datepicker();
