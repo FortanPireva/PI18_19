@@ -30,6 +30,7 @@ if($_SERVER['REQUEST_METHOD']=="POST")
       $query="INSERT INTO user(emri,mbiemri,email,password) VALUES('$emri','$mbiemri','$email','$password')";    
 
       $db->executeData($query);
+    header("Location:llogin.php");
   }
 }
 

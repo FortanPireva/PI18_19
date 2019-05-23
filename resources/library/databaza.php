@@ -53,7 +53,7 @@ class db_connector {
         
      
   }
-  protected function getData($sql)
+  public function getData($sql)
   {
     $this->connect();
 
