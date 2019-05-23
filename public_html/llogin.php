@@ -1,0 +1,40 @@
+<?php 
+
+require_once("../resources/config.php");
+
+$css_includes=Array("../css/registration.css");
+echo bootstrap_includes;  
+include_once(templates_header);
+?>
+
+
+<div class="form_wrapper">
+  <div class="form_container">
+    <div class="title_container">
+      <h2>Prishtina Airport</h2>
+    </div>
+    <div class="row clearfix">
+      <div class="">
+        <form method="POST" action="<?php echo $_SERVER['PHP_SELF']?>">
+       
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+            <input type="email" name="email" placeholder="Email" required />
+          </div>
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+            <input type="password" name="password" placeholder="Password" required />
+          </div>
+          <div class="input_field checkbox_option">
+            	<input type="checkbox" id="cb1">
+    			<label for="cb1">Remember Me</label>
+            </div>
+          <input class="button" type="submit" value="Llog in" />
+          <input class="button" type="submit" value="Create account" />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="dim-overlay"></div>
+
+
+
