@@ -60,7 +60,7 @@ include_once(templates_header);
             </div>
           </div>
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
-            <input type="email" name="email" placeholder="Email" required />
+            <input type="email" name="email" id="email" placeholder="Email" required  />
           </div>
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
             <input type="password" name="password" placeholder="Password" required />
