@@ -32,9 +32,11 @@ include_once(templates_header);
         </form>
       </div>
     </div>
+
   </div>
+  
 </div>
-<div class="dim-overlay"></div>
+<!-- <div class="dim-overlay"></div> -->
 
 
 
