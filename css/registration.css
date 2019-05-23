@@ -407,5 +407,6 @@ body {
     }
     
   }
-  
-  
+  .error{
+    color: #e1a70a
+  }

@@ -11,6 +11,7 @@ include_once(databaza);
 $db=new database();
 echo $db->connect();
 
+$msgError = "";
 if($_SERVER['REQUEST_METHOD']=="POST")
 {
   if(isset($_POST['createaccount']))
@@ -19,7 +20,7 @@ if($_SERVER['REQUEST_METHOD']=="POST")
      $_POST['email']==""||
      $_POST['password']=="")
      {
-        $msgError=htmlspecialchars("Fusha nuk duhet te lihet e zbrazet");
+        $msgError=("Fusha nuk duhet te lihet e zbrazet");
      }
   else
   {
@@ -48,7 +49,7 @@ include_once(templates_header);
     </div>
     <div class="row clearfix">
       <div class="">
-        <form method="POST" action="<?php echo $_SERVER['PHP_SELF']?>">
+        <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>">
        
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
             <input type="email" name="email" placeholder="Email" />
@@ -62,6 +63,7 @@ include_once(templates_header);
             </div>
           <input class="button" type="submit" name="login" value="Llog in" />
           <input class="button" type="submit" name="createaccount" value="Create account" />
+          <span class="error"> <?php echo $msgError;?></span>
         </form>
       </div>
     </div>

@@ -11,17 +11,19 @@ include_once(databaza);
 $db=new database();
 echo $db->connect();
 
+$msgError=$email="";
 if($_SERVER['REQUEST_METHOD']=="POST")
 {
   if($_POST['emri']==""||
     $_POST['mbiemri']==""||
-     $_POST['email']==""||
+     ($_POST['email']=="" && $_POST['email'] != filter_var($email,FILTER_VALIDATE_EMAIL)) ||
      $_POST['password']==""||
-     $_POST['passwordk']=="")
+     $_POST['passwordk']=="" ||
+     empty($_POST['checkbox']))
      {
-        $msgError=htmlspecialchars("Fusha nuk duhet te lihet e zbrazet");
+        $msgError=("Plotesoni te gjitha fushat dhe vendos tik-un");
      }
-  else
+    else
   {
       $emri=$_POST['emri'];
       $mbiemri=$_POST['mbiemri'];
@@ -46,7 +48,7 @@ include_once(templates_header);
     </div>
     <div class="row clearfix">
       <div class="">
-        <form method="POST" action="<?php echo $_SERVER['PHP_SELF']?>">
+        <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>">
         <div class="row clearfix">
             <div class="col_half">
               <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
@@ -55,27 +57,27 @@ include_once(templates_header);
             </div>
             <div class="col_half">
               <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
-                <input type="text" name="mbiemri" placeholder="Mbiemri" required />
+                <input type="text" name="mbiemri" placeholder="Mbiemri"  />
               </div>
             </div>
           </div>
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
-            <input type="email" name="email" placeholder="Email" required />
+            <input type="email" name="email" placeholder="Email"  />
           </div>
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
-            <input type="password" name="password" placeholder="Password" required />
+            <input type="password" name="password" placeholder="Password"  />
           </div>
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
-            <input type="password" name="passwordk" placeholder="Konfirmo Password-in" required />
+            <input type="password" name="passwordk" placeholder="Konfirmo Password-in"  />
           </div>
-          
-            
             <div class="input_field checkbox_option">
-            	<input type="checkbox" id="cb1">
+            	<input type="checkbox" id="cb1" name="checkbox">
     			<label for="cb1">Pajtohem me kushtet dhe kerkesat</label>
             </div>
            
           <input class="button" type="submit" value="Register" />
+          <span class="error"> <?php echo $msgError;?></span>
+
         </form>
       </div>
     </div>
