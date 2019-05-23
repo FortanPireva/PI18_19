@@ -22,11 +22,13 @@ if($_SERVER['REQUEST_METHOD']=="POST")
      {
         $msgError=("Fusha nuk duhet te lihet e zbrazet");
      }
-  else
+
+  else 
   {
       $email=$_POST['email'];
       $password=$_POST['password']; 
       $query="SELECT emri FROM  user where email='$email' and password='$password';";    
+      
       $array=array();
       $array=$db->getData($query);
   if(count($array)>0)
@@ -58,7 +60,7 @@ include_once(templates_header);
             <input type="password" name="password" placeholder="Password"  />
           </div>
           <div class="input_field checkbox_option">
-            	<input type="checkbox" id="cb1">
+            	<input type="checkbox" id="cb1" name="rememberme">
     			<label for="cb1">Remember Me</label>
             </div>
           <input class="button" type="submit" name="login" value="Llog in" />

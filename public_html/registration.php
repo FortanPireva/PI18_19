@@ -11,7 +11,8 @@ include_once(databaza);
 $db=new database();
 echo $db->connect();
 
-$msgError=$email="";
+$msgError=$email=$machErr="";
+
 if($_SERVER['REQUEST_METHOD']=="POST")
 {
   if($_POST['emri']==""||
@@ -23,6 +24,9 @@ if($_SERVER['REQUEST_METHOD']=="POST")
      {
         $msgError=("Plotesoni te gjitha fushat dhe vendos tik-un");
      }
+   else if($_POST['password'] != $_POST['passwordk']){
+    $machErr=("Password -at nuk perputhen");
+  }
     else
   {
       $emri=$_POST['emri'];
@@ -70,6 +74,7 @@ include_once(templates_header);
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
             <input type="password" name="passwordk" placeholder="Konfirmo Password-in"  />
           </div>
+          <span class="error"> <?php echo $machErr;?></span>
             <div class="input_field checkbox_option">
             	<input type="checkbox" id="cb1" name="checkbox">
     			<label for="cb1">Pajtohem me kushtet dhe kerkesat</label>
