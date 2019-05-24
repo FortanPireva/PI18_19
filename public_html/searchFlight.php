@@ -1,9 +1,3 @@
-<!--
-	Author: W3layouts
-	Author URL: http://w3layouts.com
-	License: Creative Commons Attribution 3.0 Unported
-	License URL: http://creativecommons.org/licenses/by/3.0/
--->
 
 <!DOCTYPE html>
 <html>
@@ -31,20 +25,20 @@
 				<div class="clearfix"> </div>	
 				<div class="resp-tabs-container">
 					<div class="tab-1 resp-tab-content roundtrip">
-						<form action="#" method="post">
+						<form action="../resources/controllers/flightSearch.php" method="post">
 							<div class="from">
 								<h3>From</h3>
-								<input type="text" name="city" class="city1" placeholder="Type Departure City" required="">
+								<input type="text" name="origin" class="city1" placeholder="Type Departure City" required="">
 							</div>
 							<div class="to">
 								<h3>To</h3>
-								<input type="text" name="city" class="city2" placeholder="Type Destination City" required="">
+								<input type="text" name="destination" class="city2" placeholder="Type Destination City" required="">
 							</div>
 							<div class="clear"></div>
 							<div class="date">
 								<div class="depart">
 									<h3>Depart</h3>
-									<input  id="datepicker" name="Text" type="text" value="mm/dd/yyyy" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required="">
+									<input  id="datepicker" name="date" type="text" value="mm/dd/yyyy" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required="">
 									<span class="checkbox1">
 										<label class="checkbox"><input type="checkbox" name="" checked=""><i> </i>Flexible with date</label>
 									</span>
@@ -196,10 +190,12 @@
 				</div>						
 			</div>
 		</div>
+
 	</div>
 	<div class="footer-w3l">
 		<p class="agileinfo"> &copy; 2016 Flight Ticket Booking . All Rights Reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
 	</div>
+
 	<!--script for portfolio-->
 		<script src="../js/jquery.min.js"> </script>
 		<script src="../js/easyResponsiveTabs.js" type="text/javascript"></script>
