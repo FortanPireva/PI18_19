@@ -77,7 +77,7 @@ include_once(templates_header);
           <span class="error"> <?php echo $machErr;?></span>
             <div class="input_field checkbox_option">
           <div>
-          <textarea rows="4" cols="45"></textarea>
+          <textarea rows="4" cols="45" name="textarea"></textarea>
           </div>
           <input type="checkbox" id="cb1" name="checkbox">
     			<label for="cb1">Pajtohem me kushtet dhe kerkesat</label>
