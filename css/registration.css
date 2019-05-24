@@ -1,7 +1,7 @@
 body {
     font-family: Verdana, Geneva, sans-serif;
     font-size: 14px;
-    background-image:  url("airplane.jpg");
+    background:url('../images/1.jpg') no-repeat 0px 0px;
     background-repeat: no-repeat;
    }
   
