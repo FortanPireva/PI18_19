@@ -16,18 +16,6 @@ class database extends db_connector {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 class db_connector {
   private $connection;
 
@@ -56,7 +44,7 @@ class db_connector {
   public function getData($sql)
   {
     $this->connect();
-
+   
     $array = array();
         $result = mysqli_query($this->connection, $sql);
         if (mysqli_num_rows($result) > 0) {
@@ -75,7 +63,7 @@ class db_connector {
     $this->close_connection();
   }
 
-  public function connect()
+  private function connect()
   {
     global $config;
     $this->connection=mysqli_connect($config['db']['host'],$config['db']['user'],$config['db']['password'],$config['db']['dbname']);

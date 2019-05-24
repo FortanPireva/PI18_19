@@ -1,4 +1,8 @@
+<?php
+  require('../resources/config.php');
+  include(databaza);
 
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,6 +10,7 @@
 	<link rel="stylesheet" href="../css/style.css">
 	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 	<link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+	<link href="../css/index.css" rel='stylesheet' type='text/css'>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="keywords" content="Flight Ticket Booking  Widget Responsive, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design" />
@@ -25,7 +30,7 @@
 				<div class="clearfix"> </div>	
 				<div class="resp-tabs-container">
 					<div class="tab-1 resp-tab-content roundtrip">
-						<form action="../resources/controllers/flightSearch.php" method="post">
+						<form action="flightSearch.php" method="post">
 							<div class="from">
 								<h3>From</h3>
 								<input type="text" name="origin" class="city1" placeholder="Type Departure City" required="">
@@ -68,6 +73,7 @@
 								<div class="clear"></div>
 							</div>
 							<div class="clear"></div>
+
 							<input type="submit" value="Search Flights">
 						</form>						
 					</div>		
@@ -107,7 +113,7 @@
 								<div class="clear"></div>
 							</div>
 							<div class="clear"></div>
-							<input type="submit" value="Search Flights">
+							<input type="submit"  onsubmit="showtable()" value="Search Flights">
 						</form>	
 								
 					</div>
@@ -190,7 +196,59 @@
 				</div>						
 			</div>
 		</div>
+		
 
+	</div>
+	<div style="color:orange;width:50%;margin:auto" id="tabela1">
+	<form method='Post' action="<?php echo $_SERVER['PHP-SELF']?>">
+            <input type='hidden' id='udhetimiId' name='udhetimiId'>
+            <table class='tabela' cellspacing='0' style="align-items:center;">
+                <thead>
+                    <th align='left'>Prej</th>
+                    <th align='left'>Deri</th>
+                    <th align='left'>Data</th>
+                    <th style='width: auto;'></th>
+                </thead>
+				<?php 
+				$db=new database();
+                $rez = $db->getData("Select * From flights Where flight_date >= Now() order by flight_date Limit 5");
+                
+                foreach ($rez as $rreshti) {
+                    echo "<tr><td>".$rreshti['origin']."</td><td>".$rreshti['destination']."</td><td>".$rreshti['flight_date']."</td><td style='text-align: center'>"                       
+                    . "<input type='submit' value='Rezervo' class='button button-small id-submit' id='id_".$rreshti['fid']."'></td></tr>";
+                }
+                ?>
+            </table>
+		</form>
+	</div>
+	<br/>
+	<div style="color:orange;width:50%;margin:auto;display:block;" id="tabela2">
+	<form method='Post' action="<?php echo $_SERVER['PHP-SELF']?>">
+            <input type='hidden' id='udhetimiId' name='udhetimiId'>
+            <table class='tabela' cellspacing='0' style="align-items:center;">
+                <thead>
+                    <th align='left'>Prej</th>
+                    <th align='left'>Deri</th>
+                    <th align='left'>Data</th>
+                    <th style='width: auto;'></th>
+                </thead>
+				<?php 
+		
+				  include("flightSearch.php");
+				  global $array;
+				
+				if (is_array($array) || is_object($array))
+				{
+				
+				foreach ($array as $key=>$rreshti) {
+                    echo "<tr><td>".$rreshti['origin']."</td><td>".$rreshti['destination']."</td><td>".$rreshti['flight_date']."</td><td style='text-align: center'>"                       
+					. "<input type='submit' value='Rezervo' class='button button-small id-submit' id='id_".$rreshti['fid']."'></td></tr>";
+					echo "<tr><td>".$array."</td></tr>";
+				}
+			}
+                ?>
+            </table>
+		</form>
 	</div>
 	<div class="footer-w3l">
 		<p class="agileinfo"> &copy; 2016 Flight Ticket Booking . All Rights Reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
@@ -216,6 +274,12 @@
 						  $(function() {
 							$( "#datepicker,#datepicker1,#datepicker2,#datepicker3" ).datepicker();
 						  });
+						  function showtable(){
+						
+							
+							document.getElementById("tabela1").style.display="none";
+							document.getElementById("tabela1").style.display="block";
+						  }
 				  </script>
 			<!-- //Calendar -->
 			<!--quantity-->
