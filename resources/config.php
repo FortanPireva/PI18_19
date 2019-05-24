@@ -3,13 +3,16 @@ $_DIR=str_replace('\\','/',dirname(__FILE__));
 $_DIR1=substr($_DIR,15,23);
 $config=array(
     "db"=>array(
+
       "dbname"=>"menaxhimiifluturimeve",
       "user"=>"root",
       "password"=>"",
       "host"=>"localhost",
-    ),
-    
-);
+
+      // "dbname"=>"HcP9OvsUCs",
+      // "user"=>"HcP9OvsUCs",
+      // "password"=>"dQcfJbDVRR",
+      // "host"=>"remotemysql.com",
 
 
 defined("databaza") or define("databaza",$_DIR."/library/databaza.php");
