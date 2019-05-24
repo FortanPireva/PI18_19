@@ -39,6 +39,7 @@ if($_SERVER['REQUEST_METHOD']=="POST")
     header("Location:llogin.php");
   }
 }
+
 ?>
 <script>
 
@@ -51,7 +52,30 @@ if($_SERVER['REQUEST_METHOD']=="POST")
     }
     
    }
-
+   function isEmailValid(email)
+{
+    var xmlhttp=new XMLHttpRequest();
+    if (email.length == 0) { 
+        //shkruj ni alert qi emaili zbrazet
+        return;
+      } else {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("paragrafi").style.display="block";
+            document.getElementById("paragrafi").innerHTML = this.responseText;
+            document.getElementById("email").style.border="1px solid red";
+          }
+        };
+        xmlhttp.open("GET", "../resources/controllers/verifyemail.php?q=" + email, true);
+        xmlhttp.send();
+      }
+}
+function border()
+{
+  document.getElemntById("email").style.border='1px solid #cccccc';
+}
+    
   </script>
 
 <?php
@@ -73,6 +97,7 @@ include_once(templates_header);
             <div class="col_half">
               <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
                 <input type="text" name="emri" placeholder="Emri" />
+                
               </div>
             </div>
             <div class="col_half">
@@ -82,7 +107,10 @@ include_once(templates_header);
             </div>
           </div>
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
-            <input type="email" name="email" placeholder="Email"  />
+            
+            <input type="email" style="border:  1px solid #cccccc"id="email" name="email" placeholder="Email" onblur="isEmailValid(this.value)"/>
+            <p id="paragrafi" style="display:none;font-size:10px;text-align:center;color:red"></p>
+          
           </div>
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
             <input type="password" name="password" placeholder="Password"  />
