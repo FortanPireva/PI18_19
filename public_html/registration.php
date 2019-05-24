@@ -39,6 +39,22 @@ if($_SERVER['REQUEST_METHOD']=="POST")
     header("Location:llogin.php");
   }
 }
+?>
+<script>
+
+  function shfaqKushtet(checkbox) {
+    if(checkbox.checked == true){
+        document.getElementById("divkushtet").style.display="block";
+    }
+    else {
+      document.getElementById("divkushtet").style.display="none";
+    }
+    
+   }
+
+  </script>
+
+<?php
 
 
 include_once(templates_header);
@@ -76,9 +92,21 @@ include_once(templates_header);
           </div>
           <span class="error"> <?php echo $machErr;?></span>
             <div class="input_field checkbox_option">
-          <div>
-          <textarea rows="4" cols="45" name="textarea"></textarea>
-          </div>
+            <input type="checkbox" id="cb1" name="checkbox" onchange="shfaqKushtet(this)">
+    			<label for="cb1">Shiko kushtet dhe kerkesat</label></div>
+          <div style="overflow:scroll;height:150px;display:none" id="divkushtet">
+            <?php $readfile=fopen("../resources/library/kushtet.txt", "r") or die("Unable to open file!");
+                     
+                     while(!feof($readfile)) {
+                      echo fgets($readfile) . "\n";
+                    }
+                    fclose($readfile);
+
+          
+          ?>
+          <p>
+                  </div>
+                  <div class="input_field checkbox_option">
           <input type="checkbox" id="cb1" name="checkbox">
     			<label for="cb1">Pajtohem me kushtet dhe kerkesat</label>
           </div>
