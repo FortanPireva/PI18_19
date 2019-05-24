@@ -1,9 +1,3 @@
-<!--
-	Author: W3layouts
-	Author URL: http://w3layouts.com
-	License: Creative Commons Attribution 3.0 Unported
-	License URL: http://creativecommons.org/licenses/by/3.0/
--->
 
 <!DOCTYPE html>
 <html>
@@ -196,10 +190,12 @@
 				</div>						
 			</div>
 		</div>
+
 	</div>
 	<div class="footer-w3l">
 		<p class="agileinfo"> &copy; 2016 Flight Ticket Booking . All Rights Reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
 	</div>
+
 	<!--script for portfolio-->
 		<script src="../js/jquery.min.js"> </script>
 		<script src="../js/easyResponsiveTabs.js" type="text/javascript"></script>

@@ -27,13 +27,15 @@ if($_SERVER['REQUEST_METHOD']=="POST")
   {
       $email=$_POST['email'];
       $password=$_POST['password']; 
-      $query="SELECT emri FROM  user where email='$email' and password='$password';";    
+      $query="SELECT * FROM  user where email='$email' and password='$password';";    
       
       $array=array();
       $array=$db->getData($query);
   if(count($array)>0)
       {
-          echo 'Jeni lloguar si: '.$array[0]['emri'];
+          $myfile = fopen("../resources/library/userdata.txt", "w") or die("Unable to open file!");
+          $teksti="Perdoruesi : ".$array[0]['emri']." ".$array[0]['mbiemri']." eshte kyqur me:". date("Y-m-d h:i:sa")."\n";
+          fwrite($myfile,$teksti);
       }
     
   }

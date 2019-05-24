@@ -1,6 +1,5 @@
 <?php
 $_DIR=str_replace('\\','/',dirname(__FILE__));
-$_DIR1=substr($_DIR,15,23);
 $config=array(
     "db"=>array(
 
@@ -13,7 +12,19 @@ $config=array(
       // "user"=>"HcP9OvsUCs",
       // "password"=>"dQcfJbDVRR",
       // "host"=>"remotemysql.com",
+    ));
+$path=array(
+  "css"=>array(
+    "site.css","index.css","main.css","registration.css","style.css","util.css","jquery-ui.css"
+  ),
+  "js"=>array(
+    "easyRespnsiveTabs.js","jquery-ui.js","jqeury-min.js","main.js","map-custom.js","stick-custom.js"
+  )
 
+  );
+$siteLinks=array(
+  "index.php","llogin.php","registration.php","searchFlight.php"
+);
 
 defined("databaza") or define("databaza",$_DIR."/library/databaza.php");
 defined("templates_header") or define("templates_header", $_DIR . "/templates/header.php");
