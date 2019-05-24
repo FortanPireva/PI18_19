@@ -76,9 +76,12 @@ include_once(templates_header);
           </div>
           <span class="error"> <?php echo $machErr;?></span>
             <div class="input_field checkbox_option">
-            	<input type="checkbox" id="cb1" name="checkbox">
+          <div>
+          <textarea rows="4" cols="45"></textarea>
+          </div>
+          <input type="checkbox" id="cb1" name="checkbox">
     			<label for="cb1">Pajtohem me kushtet dhe kerkesat</label>
-            </div>
+          </div>
            
           <input class="button" type="submit" value="Register" />
           <span class="error"> <?php echo $msgError;?></span>
