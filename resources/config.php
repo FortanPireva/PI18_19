@@ -7,6 +7,7 @@ $config=array(
       "user"=>"root",
       "password"=>"Ul.dkmb1m$",
       "host"=>"localhost",
+
     ),
     
 );
