@@ -5,7 +5,7 @@ $config=array(
     "db"=>array(
       "dbname"=>"menaxhimiifluturimeve",
       "user"=>"root",
-      "password"=>"",
+      "password"=>"Ul.dkmb1m$",
       "host"=>"localhost",
     ),
     
