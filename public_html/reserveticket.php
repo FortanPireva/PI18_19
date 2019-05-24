@@ -31,20 +31,20 @@
 				<div class="clearfix"> </div>	
 				<div class="resp-tabs-container">
 					<div class="tab-1 resp-tab-content roundtrip">
-						<form action="#" method="post">
+						<form action="../resources/controllers/flightSearch.php" method="post">
 							<div class="from">
 								<h3>From</h3>
-								<input type="text" name="city" class="city1" placeholder="Type Departure City" required="">
+								<input type="text" name="origin" class="city1" placeholder="Type Departure City" required="">
 							</div>
 							<div class="to">
 								<h3>To</h3>
-								<input type="text" name="city" class="city2" placeholder="Type Destination City" required="">
+								<input type="text" name="destination" class="city2" placeholder="Type Destination City" required="">
 							</div>
 							<div class="clear"></div>
 							<div class="date">
 								<div class="depart">
 									<h3>Depart</h3>
-									<input  id="datepicker" name="Text" type="text" value="mm/dd/yyyy" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required="">
+									<input  id="datepicker" name="date" type="text" value="mm/dd/yyyy" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required="">
 									<span class="checkbox1">
 										<label class="checkbox"><input type="checkbox" name="" checked=""><i> </i>Flexible with date</label>
 									</span>
