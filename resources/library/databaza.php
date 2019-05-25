@@ -5,14 +5,7 @@ include (__DIR__."/../config.php");
 
 
 class database extends db_connector {
-  public function __get($name)
-  {
-    switch($name)
-    {
-      case "USERS";
-         return $this->getData("SELECT * FROM USERS");
-    }
-  }
+  
 }
 
 
@@ -63,14 +56,14 @@ class db_connector {
     $this->close_connection();
   }
 
-  private function connect()
+  public function connect()
   {
     global $config;
     $this->connection=mysqli_connect($config['db']['host'],$config['db']['user'],$config['db']['password'],$config['db']['dbname']);
-    if(!$this->connection)
-     {
-       die('Connection failed');
-     }
+    $error = mysqli_connect_error();
+    if ( mysqli_connect_errno() ) {
+      die( mysqli_connect_error() ); // die() is equivalent to exit()
+      }
   }
   private function close_connection()
   {

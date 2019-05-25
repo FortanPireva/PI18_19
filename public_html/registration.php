@@ -33,10 +33,10 @@ if($_SERVER['REQUEST_METHOD']=="POST")
       $mbiemri=$_POST['mbiemri'];
       $email=$_POST['email'];
       $password=$_POST['password'];
-      $query="INSERT INTO user(emri,mbiemri,email,password) VALUES('$emri','$mbiemri','$email','$password')";    
-
-      $db->executeData($query);
-    header("Location:llogin.php");
+      $query="INSERT INTO user(emri,mbiemri,email,isManager,password) VALUES('$emri','$mbiemri','$email',0,'$password')";  
+      echo $query;  
+      echo $db->executeData($query);
+    // header("Location:llogin.php");
   }
 }
 
@@ -65,10 +65,13 @@ if($_SERVER['REQUEST_METHOD']=="POST")
             document.getElementById("paragrafi").style.display="block";
             document.getElementById("paragrafi").innerHTML = this.responseText;
             document.getElementById("email").style.border="1px solid red";
+            
           }
+          
         };
         xmlhttp.open("GET", "../resources/controllers/verifyemail.php?q=" + email, true);
         xmlhttp.send();
+        header("Location:index.php");
       }
 }
 function border()
@@ -119,8 +122,8 @@ include_once(templates_header);
             <input type="password" name="passwordk" placeholder="Konfirmo Password-in"  />
           </div>
           <span class="error"> <?php echo $machErr;?></span>
-            <div class="input_field checkbox_option">
-            <input type="checkbox" id="cb1" name="checkbox" onchange="shfaqKushtet(this)">
+            <!-- <div class="input_field checkbox_option">
+            <input type="checkbox" id="cb1" name="checkbox" onchange="shfaqKushtet(this)"> -->
     			<label for="cb1">Shiko kushtet dhe kerkesat</label></div>
           <div style="overflow:scroll;height:150px;display:none" id="divkushtet">
             <?php $readfile=fopen("../resources/library/kushtet.txt", "r") or die("Unable to open file!");
@@ -133,7 +136,7 @@ include_once(templates_header);
           
           ?>
           <p>
-                  </div>
+                  </div>=
                   <div class="input_field checkbox_option">
           <input type="checkbox" id="cb1" name="checkbox">
     			<label for="cb1">Pajtohem me kushtet dhe kerkesat</label>

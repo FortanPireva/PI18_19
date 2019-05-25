@@ -2,16 +2,10 @@
 $_DIR=str_replace('\\','/',dirname(__FILE__));
 $config=array(
     "db"=>array(
-
-      "dbname"=>"menaxhimiifluturimeve",
-      "user"=>"root",
-      "password"=>"",
-      "host"=>"localhost",
-
-      // "dbname"=>"HcP9OvsUCs",
-      // "user"=>"HcP9OvsUCs",
-      // "password"=>"dQcfJbDVRR",
-      // "host"=>"remotemysql.com",
+       "dbname"=>"c1vzMm1txW",
+       "user"=>"c1vzMm1txW",
+       "password"=>"EbTHDUUq4C",
+      "host"=>"remotemysql.com",
     ));
 $path=array(
   "css"=>array(

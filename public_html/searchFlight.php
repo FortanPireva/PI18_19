@@ -30,7 +30,7 @@
 				<div class="clearfix"> </div>	
 				<div class="resp-tabs-container">
 					<div class="tab-1 resp-tab-content roundtrip">
-						<form action="flightSearch.php" method="post">
+						<form action="<?php echo $_SERVER['PHP-SELF'];?>" method="post">
 							<div class="from">
 								<h3>From</h3>
 								<input type="text" name="origin" class="city1" placeholder="Type Departure City" required="">
@@ -234,8 +234,39 @@
                 </thead>
 				<?php 
 		
-				  include("flightSearch.php");
-				  global $array;
+		require("../resources/config.php");
+
+		include_once(databaza);
+		
+		$db=new database();
+	
+		global $array;
+		
+		if($_SERVER['REQUEST_METHOD']=="POST")
+		{
+		  if($_POST['origin']==""||
+			$_POST['destination']==""||
+			 $_POST['date']==""){
+		
+				   echo 'Sheno te dhenat';
+			 }
+			else
+		  {
+			  $origin=$_POST['origin'];
+			  $destination=$_POST['destination'];
+			  $date=$_POST['date'];
+			  $date=date('Y-m-d',strtotime($_POST['date']));
+
+			  echo $origin." ".$destination." ".$date;
+			  $query="SELECT origin,destination,flight_date FROM flights where origin='$origin'"."AND destination='$destination'"."AND flight_date='$date'";
+
+	$array=$db->getData($query);
+			  
+  }
+  
+			
+}
+		
 				
 				if (is_array($array) || is_object($array))
 				{

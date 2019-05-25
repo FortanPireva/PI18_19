@@ -64,7 +64,7 @@ include_once(templates_header);
           <div class="input_field checkbox_option">
             	<input type="checkbox" id="cb1" name="rememberme">
     			<label for="cb1">Remember Me</label>
-            </div>
+</div>  
           <input class="button" type="submit" name="login" value="Llog in" />
           <input class="button" type="submit" name="createaccount" value="Create account" />
           <span class="error"> <?php echo $msgError;?></span>
