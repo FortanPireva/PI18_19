@@ -37,7 +37,7 @@ if($_SERVER['REQUEST_METHOD']=="POST")
           $teksti="Perdoruesi : ".$array[0]['emri']." ".$array[0]['mbiemri']." eshte kyqur me:". date("Y-m-d h:i:sa")."\n";
           fwrite($myfile,$teksti);
       }
-    
+    header("Location:searchFlight.php");
   }
 }
 

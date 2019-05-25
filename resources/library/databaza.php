@@ -52,8 +52,39 @@ class db_connector {
   public function executeData($sql){
     
     $this->connect();
+    mysqli_real_escape_string($sql);
     mysqli_query($this->connection,$sql);
     $this->close_connection();
+  }
+  public function sanitizedexecuteData() {
+    $this->connect();
+    $parametrat=func_get_args();
+    $sql=array_shift($parametrat);
+    if(count($parametrat)==3){
+           $stmt=mysqli_prepare($sql);
+           $stmt->bind_param("ssss",$parametrat[0],$parametrat[1],$parametrat[2]);
+           $stmt->execute();
+           $stmt->close();
+    }
+    if(count($parametrat)==4){
+      $stmt=mysqli_prepare($sql);
+      $stmt->bind_param("sssss",$parametrat[0],$parametrat[1],$parametrat[2],$parametrat[3]);
+      $stmt->execute();
+      $stmt->close();
+    }
+    $this->close_connection();
+  }
+  public function sanitizedgetData(){
+    $this->connect();
+    $parametrat=func_num_args();
+    $sql=array_shif($parametrat);
+       $stmt=mysqli_prepare($sql);
+       $stmt->bind_param("i",$parametrat[0]);
+       $stmt->execute();
+       $result=$stmt->get_result();
+
+       return $result;
+
   }
 
   public function connect()
