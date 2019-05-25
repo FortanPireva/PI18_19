@@ -125,7 +125,7 @@ include_once(templates_header);
             <div class="input_field checkbox_option">
             <input type="checkbox" id="cb1" name="checkbox" onchange="shfaqKushtet(this)">
     			<label for="cb1">Shiko dhe prano kushtet dhe kerkesat</label></div>
-          <div style="overflow:scroll;height:150px;display:none" id="divkushtet">
+          <div style="overflow:hidden;height:150px;display:none" id="divkushtet">
             <?php $readfile=fopen("../resources/library/kushtet.txt", "r") or die("Unable to open file!");
                      
                      while(!feof($readfile)) {
@@ -135,12 +135,11 @@ include_once(templates_header);
 
           
           ?>
-          <p>
                   </div>
-                  <!-- <div class="input_field1 checkbox_optio1n">
+           <div class="input_field checkbox_option">
           <input type="checkbox" id="cb12" name="checkbox1" >
     			<label for="cb112">Pajtohem me kushtet dhe kerkesat</label>
-          </div> -->
+          </div> 
            
           <input class="button" type="submit" value="Register" />
           <span class="error"> <?php echo $msgError;?></span>
