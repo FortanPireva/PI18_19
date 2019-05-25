@@ -33,9 +33,8 @@ if($_SERVER['REQUEST_METHOD']=="POST")
       $array=$db->getData($query);
   if(count($array)>0)
       {
-          $myfile = fopen("../resources/library/userdata.txt", "w") or die("Unable to open file!");
           $teksti="Perdoruesi : ".$array[0]['emri']." ".$array[0]['mbiemri']." eshte kyqur me:". date("Y-m-d h:i:sa")."\n";
-          fwrite($myfile,$teksti);
+          $myfile = file_put_contents('../resources/library/userdata.txt', $teksti.PHP_EOL , FILE_APPEND | LOCK_EX);
       }
     header("Location:searchFlight.php");
   }
