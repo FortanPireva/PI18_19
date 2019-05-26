@@ -39,7 +39,7 @@ if($_SERVER['REQUEST_METHOD']=="POST")
     header("Location:searchFlight.php");
   }
 }
-
+$header_css="../css/style2.css";
 
 include_once(templates_header);
 ?>
@@ -76,5 +76,5 @@ include_once(templates_header);
 </div>
 <!-- <div class="dim-overlay"></div> -->
 
-
+<?php include_once(templates_footer);
 
