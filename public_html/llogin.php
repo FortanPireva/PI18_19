@@ -11,7 +11,7 @@ include_once(databaza);
 $db=new database();
 echo $db->connect();
 
-$msgError = "";
+$msgError = $passerror= "";
 if($_SERVER['REQUEST_METHOD']=="POST")
 {
   if(isset($_POST['createaccount']))
@@ -36,10 +36,13 @@ if($_SERVER['REQUEST_METHOD']=="POST")
           $myfile = fopen("../resources/library/userdata.txt", "w") or die("Unable to open file!");
           $teksti="Perdoruesi : ".$array[0]['emri']." ".$array[0]['mbiemri']." eshte kyqur me:". date("Y-m-d h:i:sa")."\n";
           fwrite($myfile,$teksti);
+          header("Location:searchFlight.php");
       }
-    header("Location:searchFlight.php");
+    
+  else{
+    $passerror=("Email ose Passwordi jan gabim");
   }
-}
+}}
 
 
 include_once(templates_header);
@@ -61,6 +64,7 @@ include_once(templates_header);
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
             <input type="password" name="password" placeholder="Password"  />
           </div>
+          <span class="error"> <?php echo $passerror;?></span>
           <div class="input_field checkbox_option">
             	<input type="checkbox" id="cb1" name="rememberme">
     			<label for="cb1">Remember Me</label>
@@ -76,6 +80,3 @@ include_once(templates_header);
   
 </div>
 <!-- <div class="dim-overlay"></div> -->
-
-
-
