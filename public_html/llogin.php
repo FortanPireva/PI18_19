@@ -33,10 +33,10 @@ if($_SERVER['REQUEST_METHOD']=="POST")
       $array=$db->getData($query);
   if(count($array)>0)
       {
+          $myfile = fopen("../resources/library/userdata.txt", "w") or die("Unable to open file!");
           $teksti="Perdoruesi : ".$array[0]['emri']." ".$array[0]['mbiemri']." eshte kyqur me:". date("Y-m-d h:i:sa")."\n";
           fwrite($myfile,$teksti);
           header("Location:searchFlight.php");
-          $myfile = file_put_contents('../resources/library/userdata.txt', $teksti.PHP_EOL , FILE_APPEND | LOCK_EX);
       }
     
   else{
@@ -44,8 +44,6 @@ if($_SERVER['REQUEST_METHOD']=="POST")
   }
 }}
 
-}
-$header_css="../css/style2.css";
 
 include_once(templates_header);
 ?>
@@ -82,7 +80,3 @@ include_once(templates_header);
   
 </div>
 <!-- <div class="dim-overlay"></div> -->
-<!-- <div class="dim-overlay"></div> -->
-
-<?php include_once(templates_footer);
-

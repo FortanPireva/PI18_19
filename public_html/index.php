@@ -5,9 +5,8 @@
 
  $db=new database();
 
- $header_css="../css/style2.css";
 
-include(templates_header);
+include('header.php');
 ?>
 
   
@@ -33,4 +32,4 @@ include(templates_header);
                 ?>
             </table>
         </form>
-<?php include(templates_footer);?>
+<?php include('footer.php');?>

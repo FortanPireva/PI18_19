@@ -82,8 +82,7 @@ function border()
   </script>
 
 <?php
-  $css="../css/registration.php";
-  $header_css="../css/style2.css";
+
 
 include_once(templates_header);
 ?>
