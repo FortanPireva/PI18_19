@@ -68,9 +68,23 @@
         </div>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
+    <form class="form-inline my-2 my-lg-0" style="margin-right:200px;">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
     </form>
+    
+       
+      
+      <form class="form-inline my-2 my-lg-0" style="margin-left:50px;">
+    
+       <img src="https://img.icons8.com/metro/26/000000/administrator-male.png">
+           <a class="nav-link" href="registration.php">Regjistrohuni</a>
+    </form>
+    <form class="form-inline my-2 my-lg-0" style="margin-left:20px;">
+       <img src="https://img.icons8.com/color/24/000000/gender-neutral-user.png">
+       <a class="nav-link" href="llogin.php">Hyr</a>
+    </form>
+
+
   </div>
 </nav>

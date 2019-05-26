@@ -44,7 +44,6 @@ if($_SERVER['REQUEST_METHOD']=="POST")
   }
 }}
 
-}
 $header_css="../css/style2.css";
 
 include_once(templates_header);
