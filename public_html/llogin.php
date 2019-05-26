@@ -42,7 +42,7 @@ if($_SERVER['REQUEST_METHOD']=="POST")
   else{
     $passerror=("Email ose Passwordi jan gabim");
   }
-}}
+}
 
 }
 $header_css="../css/style2.css";
