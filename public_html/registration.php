@@ -3,6 +3,7 @@
 require_once("../resources/config.php");
 
 $css_includes=Array("../css/registration.css");
+
 echo bootstrap_includes;  
 
 include_once(databaza);
@@ -137,10 +138,7 @@ include_once(templates_header);
           
           ?>
                   </div>
-           <div class="input_field checkbox_option">
-          <input type="checkbox" id="cb12" name="checkbox1" >
-    			<label for="cb112">Pajtohem me kushtet dhe kerkesat</label>
-          </div> 
+          
            
           <input class="button" type="submit" value="Register" />
           <span class="error"> <?php echo $msgError;?></span>

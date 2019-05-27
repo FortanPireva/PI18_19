@@ -10,7 +10,7 @@ class database extends db_connector {
 
 
 class db_connector {
-  private $connection;
+  public $connection;
 
   protected function connector_create_db() {
        global $config;

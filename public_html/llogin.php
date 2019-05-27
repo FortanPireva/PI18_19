@@ -16,7 +16,7 @@ include_once(databaza);
 $db=new database();
 echo $db->connect();
 
-$msgError = $passerror= "";
+$msgError = $passerror= $member_login=$member_password="";
 if($_SERVER['REQUEST_METHOD']=="POST")
 {
   if(isset($_POST['createaccount']))
@@ -40,7 +40,20 @@ if($_SERVER['REQUEST_METHOD']=="POST")
       {
           $teksti="Perdoruesi : ".$array[0]['emri']." ".$array[0]['mbiemri']." eshte kyqur me:". date("Y-m-d h:i:sa")."\n";
           fwrite($myfile,$teksti);
-          header("Location:searchFlight.php");
+          if(!empty($_POST["rememberme"]))
+          {
+            setcookie('member_login',$_POST['email'],time() +(10 *3600));
+            setcookie('member_password',$_POST['password'],time() +(10 *3600));
+          }
+          else{
+            if(isset($_COOKIE['member_login'])){
+              setcookie('member_login',"");
+            }
+            if(isset($_COOKIE['member_password'])){
+              setcookie('member_password',"");
+            }
+          }
+          header("Location:llogin.php");
           $myfile = file_put_contents('../resources/library/userdata.txt', $teksti.PHP_EOL , FILE_APPEND | LOCK_EX);
       }
     
@@ -63,22 +76,24 @@ include_once(templates_header);
     </div>
     <div class="row clearfix">
       <div class="">
-        <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>">
+      <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>">
        
-          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
-            <input type="email" name="email" placeholder="Email" />
-          </div>
-          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
-            <input type="password" name="password" placeholder="Password"  />
-          </div>
-          <span class="error"> <?php echo $passerror;?></span>
-          <div class="input_field checkbox_option">
-            	<input type="checkbox" id="cb1" name="rememberme">
-    			<label for="cb1">Remember Me</label>
-</div>  
+       <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+         <input type="email" name="email" placeholder="Email" <?php if(isset($_COOKIE['member_login'])){echo "value='{$_COOKIE['member_login']}'";} ?>>
+       </div>
+       <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+         <input type="password" name="password" placeholder="Password" <?php if(isset($_COOKIE['member_password'])){echo "value='{$_COOKIE['member_password']}'";} ?>>
+       </div>
+       <span class="error"> <?php echo $passerror;?></span>
+       <div class="input_field checkbox_option">
+           <input type="checkbox" id="cb1" name="rememberme">
+       <label for="cb1">Remember Me</label>
+</div> 
           <input class="button" type="submit" name="login" value="Llog in" />
           <input class="button" type="submit" name="createaccount" value="Create account" />
           <span class="error"> <?php echo $msgError;?></span>
+          
+          
         </form>
       </div>
     </div>
