@@ -1,4 +1,9 @@
 <?php 
+session_start();
+if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
+  header("Location:searchFlight.php");
+}
+
 
 require_once("../resources/config.php");
 
@@ -84,4 +89,3 @@ include_once(templates_header);
 <!-- <div class="dim-overlay"></div> -->
 
 <?php include_once(templates_footer);
-
