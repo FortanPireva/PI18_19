@@ -48,6 +48,7 @@ if($_SERVER['REQUEST_METHOD']=="POST")
     $passerror=("Email ose Passwordi jan gabim");
   }
 }
+}
 
 $header_css="../css/style2.css";
 
@@ -89,3 +90,4 @@ include_once(templates_header);
 <!-- <div class="dim-overlay"></div> -->
 
 <?php include_once(templates_footer);
+?>
