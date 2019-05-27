@@ -53,8 +53,9 @@ class db_connector {
     
     $this->connect();
     mysqli_real_escape_string($this->connection,$sql);
-    mysqli_query($this->connection,$sql);
+    $result=mysqli_query($this->connection,$sql);
     $this->close_connection();
+    return $result;
   }
 
   public function connect()
