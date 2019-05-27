@@ -7,8 +7,15 @@ $css_includes=Array("../css/registration.css");
 echo bootstrap_includes;  
 
 include_once(databaza);
-
-
+function generateRandomString($length = 10) {
+  $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  $charactersLength = strlen($characters);
+  $randomString = '';
+  for ($i = 0; $i < $length; $i++) {
+      $randomString .= $characters[rand(0, $charactersLength - 1)];
+  }
+  return $randomString;
+}
 $db=new database();
 echo $db->connect();
 
@@ -34,7 +41,9 @@ if($_SERVER['REQUEST_METHOD']=="POST")
       $mbiemri=$_POST['mbiemri'];
       $email=$_POST['email'];
       $password=$_POST['password'];
-      $query="INSERT INTO user(emri,mbiemri,email,isManager,password) VALUES('$emri','$mbiemri','$email',0,'$password')";  
+      $salt=generateRandomString();
+      $password=sha1($salt.$password); 
+      $query="INSERT INTO user(emri,mbiemri,email,salt,isManager,password) VALUES('$emri','$mbiemri','$email','$salt',0,'$password')";  
       echo $query;  
       echo $db->executeData($query);
     // header("Location:llogin.php");
