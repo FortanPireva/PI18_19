@@ -7,6 +7,7 @@ Perdoruesi : fortan pireva eshte kyqur me:2019-05-26 11:07:53pm
 
 Perdoruesi : fortan pireva eshte kyqur me:2019-05-27 12:34:12am
 
+<<<<<<< HEAD
 Perdoruesi : labinot Draguhsa eshte kyqur me:2019-05-27 05:45:53am
 
 Perdoruesi : labinot Draguhsa eshte kyqur me:2019-05-27 05:47:38am
@@ -19,3 +20,5 @@ Perdoruesi : labinot Draguhsa eshte kyqur me:2019-05-27 06:45:49am
 
 Perdoruesi : labinot Draguhsa eshte kyqur me:2019-05-27 09:49:36am
 
+=======
+>>>>>>> parent of e3b700a... cc

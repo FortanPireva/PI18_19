@@ -1,9 +1,6 @@
 <?php
   require('../resources/config.php');
-	include(databaza);
-	
-
- include_once(templates_header);
+  include(databaza);
 
 ?>
 <!DOCTYPE html>
@@ -33,7 +30,7 @@
 				<div class="clearfix"> </div>	
 				<div class="resp-tabs-container">
 					<div class="tab-1 resp-tab-content roundtrip">
-						<form class="form" action="<?php echo $_SERVER['PHP-SELF'];?>" method="post">
+						<form action="<?php echo $_SERVER['PHP-SELF'];?>" method="post">
 							<div class="from">
 								<h3>From</h3>
 								<input type="text" name="origin" class="city1" placeholder="Type Departure City" required="">
@@ -351,5 +348,3 @@
 
 </body>
 </html>
-<?php include_once(templates_footer);
-?>

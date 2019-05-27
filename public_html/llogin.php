@@ -40,20 +40,6 @@ if($_SERVER['REQUEST_METHOD']=="POST")
       {
           $teksti="Perdoruesi : ".$array[0]['emri']." ".$array[0]['mbiemri']." eshte kyqur me:". date("Y-m-d h:i:sa")."\n";
           fwrite($myfile,$teksti);
-          
-          if(!empty($_POST["rememberme"]))
-          {
-            setcookie("member_login",$_POST["email"],time() +(10 *3600));
-            setcookie("member_password",$_POST["password"],time() +(10 *3600));
-          }
-          else{
-            if(isset($_COOKIE["member_login"])){
-              setcookie("member_login","");
-            }
-            if(isset($_COOKIE["member_password"])){
-              setcookie("member_password","");
-            }
-          }
           header("Location:searchFlight.php");
           $myfile = file_put_contents('../resources/library/userdata.txt', $teksti.PHP_EOL , FILE_APPEND | LOCK_EX);
       }
@@ -80,14 +66,14 @@ include_once(templates_header);
         <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>">
        
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
-            <input type="email" name="email" placeholder="Email" value="<?php if(isset($_COOKIE['member_login'])){echo $_COOKIE["member_login"];} ?>" />
+            <input type="email" name="email" placeholder="Email" />
           </div>
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
-            <input type="password" name="password" placeholder="Password" value="<?php if(isset($_COOKIE['member_password'])){echo $_COOKIE["member_password"];} ?>" />
+            <input type="password" name="password" placeholder="Password"  />
           </div>
           <span class="error"> <?php echo $passerror;?></span>
           <div class="input_field checkbox_option">
-            	<input type="checkbox" id="cb1" name="rememberme" value="<?php if(isset($_COOKIE['member_login'])){?> checked <?php } ?>">
+            	<input type="checkbox" id="cb1" name="rememberme">
     			<label for="cb1">Remember Me</label>
 </div>  
           <input class="button" type="submit" name="login" value="Llog in" />
