@@ -3,6 +3,7 @@
 require_once("../resources/config.php");
 
 $css_includes=Array("../css/registration.css");
+
 echo bootstrap_includes;  
 
 include_once(databaza);
@@ -39,7 +40,9 @@ if($_SERVER['REQUEST_METHOD']=="POST")
     // header("Location:llogin.php");
   }
 }
+$header_css="../css/style2.css";
 
+include_once(templates_header);
 ?>
 <script>
 
