@@ -15,29 +15,16 @@ $msgError=$email=$machErr="";
 
 if($_SERVER['REQUEST_METHOD']=="POST")
 {
-//   if($_POST['emri']==""||
-//     $_POST['mbiemri']==""||
-//      ($_POST['email']=="" && $_POST['email'] != filter_var($email,FILTER_VALIDATE_EMAIL)) ||
-//      $_POST['password']==""||
-//      $_POST['passwordk']=="" ||
-//      empty($_POST['checkbox']))
-//      {
-//         $msgError=("Plotesoni te gjitha fushat dhe vendos tik-un");
-//      }
-//    else if($_POST['password'] != $_POST['passwordk']){
-//     $machErr=("Password -at nuk perputhen");
-//   }
-//     else
-//   {
-//       $emri=$_POST['emri'];
-//       $mbiemri=$_POST['mbiemri'];
-//       $email=$_POST['email'];
-//       $password=$_POST['password'];
-//       $query="INSERT INTO user(emri,mbiemri,email,isManager,password) VALUES('$emri','$mbiemri','$email',0,'$password')";  
-//       echo $query;  
-//       echo $db->executeData($query);
-//     // header("Location:llogin.php");
-//   }
+  if($_POST['name_on_card']==""||
+    $_POST['card_number']==""||
+    
+     $_POST['data_skadimit']==""||
+     $_POST['CVV']=="" ||
+     empty($_POST['checkbox']))
+     {
+        $msgError=("Plotesoni te gjitha fushat dhe vendos tik-un");
+     }
+ 
 }
 
 ?>
@@ -52,33 +39,7 @@ if($_SERVER['REQUEST_METHOD']=="POST")
     }
     
    }
-   function isEmailValid(email)
-{
-    var xmlhttp=new XMLHttpRequest();
-    if (email.length == 0) { 
-        //shkruj ni alert qi emaili zbrazet
-        return;
-      } else {
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("paragrafi").style.display="block";
-            document.getElementById("paragrafi").innerHTML = this.responseText;
-            document.getElementById("email").style.border="1px solid red";
-            
-          }
-          
-        };
-        xmlhttp.open("GET", "../resources/controllers/verifyemail.php?q=" + email, true);
-        xmlhttp.send();
-        header("Location:index.php");
-      }
-}
-function border()
-{
-  document.getElemntById("email").style.border='1px solid #cccccc';
-}
-    
+   
   </script>
 
 <?php
@@ -100,24 +61,24 @@ include_once(templates_header);
        
           <div class="input_field"></span>
             
-            <input type="email" style="border:  1px solid #cccccc"id="email" name="email" placeholder="Name on Card" onblur="isEmailValid(this.value)"/>
+            <input type="text" style="border:  1px solid #cccccc"id="email" name="name_on_card" placeholder="Name on Card" onblur="isEmailValid(this.value)"/>
             <p id="paragrafi" style="display:none;font-size:10px;text-align:center;color:red"></p>
           
           </div>
           <div class="input_field"> 
-            <input type="password" name="password" placeholder="Card Number"  />
+            <input type="text" name="card_number" placeholder="Card Number"  />
           </div>
         
           <div class="row clearfix">
             <div class="col_half">
               <div class="input_field"> </i></span>
-                <input type="text" name="emri" placeholder="Expiration Date" />
+                <input type="month" style="width=30px" name="data_skadimit" />
                 
               </div>
             </div>
             <div class="col_half">
               <div class="input_field"> </span>
-                <input type="text" name="mbiemri" placeholder="CVV"  />
+                <input type="text" name="CVV" placeholder="CVV"  />
               </div>
             </div>
           </div>
@@ -136,10 +97,7 @@ include_once(templates_header);
           
           ?>
                   </div>
-           <div class="input_field checkbox_option">
-          <input type="checkbox" id="cb12" name="checkbox1" >
-    			<label for="cb112">Pajtohem me kushtet dhe kerkesat</label>
-          </div> 
+            
            
           <input class="button" type="submit" value="Paguaj" />
           <span class="error"> <?php echo $msgError;?></span>
