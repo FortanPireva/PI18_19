@@ -59,7 +59,10 @@ if($_SERVER['REQUEST_METHOD']=="POST")
               setcookie('member_password',"");
             }
           }
-          header("Location:llogin.php");
+        if($array[0]['isManager']==0)
+          header("Location:searchFlight.php");
+        else
+          header("Location:menaxhmenti/shtouser.php");
           $myfile = file_put_contents('../resources/library/userdata.txt', $teksti.PHP_EOL , FILE_APPEND | LOCK_EX);
       }
     

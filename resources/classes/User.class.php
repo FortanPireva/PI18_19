@@ -67,7 +67,9 @@ class User {
 
 function insertUser($db,$user)
 {
-    $sql="INSERT INTO user(emri,mbiemri,email,isManager,password) VALUES('{$user->getEmri()}','{$user->getMbiemri()}','{$user->getEmail()}',{$user->getManager()},'{$user->getPassword()}');";
+    $salt=generateRandomString();
+    $password=sha1('{user->getPassword()}'.$salt);
+    $sql="INSERT INTO user(emri,mbiemri,email,salt,isManager,password) VALUES('{$user->getEmri()}','{$user->getMbiemri()}','{$user->getEmail()}','$salt',{$user->getManager()},'$password');";
     echo $sql;
    if($db->executeData($sql))
       return true; 
@@ -112,3 +114,13 @@ $sql="SELECT * FROM user WHERE uid={$user->getUid()}";
     $arrayUser=$db->getData($sql);
     return $arrayUser;
 }
+
+function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+  }
