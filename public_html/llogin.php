@@ -31,13 +31,19 @@ if($_SERVER['REQUEST_METHOD']=="POST")
   else 
   {
       $email=$_POST['email'];
-      $password=$_POST['password']; 
+      $password=$_POST['password'];
+      $query1="SELECT salt from user where email='$email'";
+      $salt=$db->getData($query1);
+      $salt=implode(",",$salt[0]);
+      echo $salt."<br/>";
+      $password=sha1($salt.$password);
+      echo $password;
       $query="SELECT * FROM  user where email='$email' and password='$password';";    
       
       $array=array();
       $array=$db->getData($query);
   if(count($array)>0)
-      {
+      { 
           $teksti="Perdoruesi : ".$array[0]['emri']." ".$array[0]['mbiemri']." eshte kyqur me:". date("Y-m-d h:i:sa")."\n";
           fwrite($myfile,$teksti);
           if(!empty($_POST["rememberme"]))
@@ -59,6 +65,7 @@ if($_SERVER['REQUEST_METHOD']=="POST")
     
   else{
     $passerror=("Email ose Passwordi jan gabim");
+    $error=true;
   }
 }
 }
@@ -92,6 +99,12 @@ include_once(templates_header);
           <input class="button" type="submit" name="login" value="Llog in" />
           <input class="button" type="submit" name="createaccount" value="Create account" />
           <span class="error"> <?php echo $msgError;?></span>
+          <?php
+            if(isset($error))
+            {
+                 echo "<span><a href=\"updatePassword.php\">Update Pass</a></span>";
+            }
+          ?>
           
           
         </form>
