@@ -1,9 +1,6 @@
 <?php 
 session_start();
-if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
-  header("Location:searchFlight.php");
-}
-
+  
 
 require_once("../resources/config.php");
 
@@ -59,6 +56,10 @@ if($_SERVER['REQUEST_METHOD']=="POST")
               setcookie('member_password',"");
             }
           }
+          $_SESSION['email']=$_POST['email'];
+          $_SESSION['password']=$_POST['password'];
+          
+          
         if($array[0]['isManager']==0)
           header("Location:searchFlight.php");
         else

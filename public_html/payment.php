@@ -6,6 +6,13 @@ $css_includes=Array("../css/registration.css");
 echo bootstrap_includes;  
 
 include_once(databaza);
+session_start();
+if(!isset($_SESSION['email']) || !isset($_SESSION['password'])){
+  header("Location: llogin.php");
+}else 
+{
+  echo " vazhdoni me rezervimin ne emailen". $_SESSION['email'];
+}
 
 
 $db=new database();
@@ -24,6 +31,8 @@ if($_SERVER['REQUEST_METHOD']=="POST")
      {
         $msgError=("Plotesoni te gjitha fushat dhe vendos tik-un");
      }
+
+     session_destroy();
  
 }
 
