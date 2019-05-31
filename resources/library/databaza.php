@@ -39,6 +39,7 @@ class db_connector {
     $this->connect();
    
     $array = array();
+      mysqli_real_escape_string($this->connection,$sql);
         $result = mysqli_query($this->connection, $sql);
         if (mysqli_num_rows($result) > 0) {
             while($row = mysqli_fetch_assoc($result)) {
@@ -52,7 +53,7 @@ class db_connector {
   public function executeData($sql){
     
     $this->connect();
-    mysqli_real_escape_string($this->connection,$sql);
+    mysqli_real_escape_string($this->connection,$sql);  
     $result=mysqli_query($this->connection,$sql);
     $this->close_connection();
     return $result;

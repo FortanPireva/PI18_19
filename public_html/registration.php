@@ -46,7 +46,7 @@ if($_SERVER['REQUEST_METHOD']=="POST")
       $query="INSERT INTO user(emri,mbiemri,email,salt,isManager,password) VALUES('$emri','$mbiemri','$email','$salt',0,'$password')";  
       echo $query;  
       echo $db->executeData($query);
-    // header("Location:llogin.php");
+     header("Location:llogin.php");
   }
 }
 

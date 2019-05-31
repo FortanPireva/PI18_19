@@ -35,7 +35,7 @@
                     <ul class="resp-tabs-list">
                         <li class="resp-tab-item"><span>Round Trip</span></li>
                         <li class="resp-tab-item"><span>One way</span></li>
-                        <li class="resp-tab-item"><span>Multi city</span></li>
+                        
                     </ul>
                     <div class="clearfix"> </div>
                     <div class="resp-tabs-container">
@@ -142,14 +142,14 @@
                         <th align='left'>Prej</th>
                         <th align='left'>Deri</th>
                         <th align='left'>Data</th>
-                        <th style='width: auto;'></th>
+                        <th align="left">Qmimi</th>
                     </thead>
                     <?php 
 				$db=new database();
                 $rez = $db->getData("Select * From flights Where flight_date >= Now() order by flight_date Limit 5");
 
                 foreach ($rez as $rreshti) {
-                    echo "<tr><td>".$rreshti['origin']."</td><td>".$rreshti['destination']."</td><td>".$rreshti['flight_date']."</td><td style='text-align: center'>"                       
+                    echo "<tr><td>".$rreshti['origin']."</td><td>".$rreshti['destination']."</td><td>".$rreshti['flight_date']."</td><td>".$rreshti['Qmimi']."</td> <td style='text-align: center'>"                       
                     . "<input type='submit' value='Rezervo' class='button button-small id-submit' id='id_".$rreshti['fid']."'></td></tr>";
                 }
                 ?>
@@ -165,7 +165,7 @@
                         <th align='left'>Prej</th>
                         <th align='left'>Deri</th>
                         <th align='left'>Data</th>
-                        <th style='width: auto;'></th>
+                        <th align="left">Qmimi</th>
                     </thead>
                     <?php 
 
@@ -194,15 +194,15 @@
 
 			  echo $origin." ".$destination." ".$date;
 			  $query="SELECT * FROM flights where origin='$origin'"."AND destination='$destination'"."AND flight_date='$date'";
-
+            
 	$array=$db->getData($query);
 
 				if (is_array($array) || is_object($array))
 				{
 
 				foreach ($array as $key=>$rreshti) {
-                    echo "<tr><td>".$rreshti['origin']."</td><td>".$rreshti['destination']."</td><td>".$rreshti['flight_date']."</td><td style='text-align: center'>"                       
-					. "<input type='submit' name='paySubmit'  value='Rezervo' name class='button button-small id-submit' ></td><td><input type='hidden' name='rreshti' value=\"".$rreshti['fid']."\"> </tr></form>";
+                    echo "<tr><td>".$rreshti['origin']."</td><td>".$rreshti['destination']."</td><td>".$rreshti['flight_date']."</td><td>".$rreshti['Qmimi']."</td><td style='text-align: center'>"                       
+                    . "<input type='submit' name='paySubmit'  value='Rezervo' name class='button button-small id-submit' ></td><td><input type='hidden' name='rreshti' value=\"".$rreshti['fid']."\"> </tr></form>";
 					
 				}
 

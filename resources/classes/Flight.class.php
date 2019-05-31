@@ -11,7 +11,7 @@ class Flight{
     public function __construct()
     {
         $nrParametrave=func_num_args();
-        $parametrat=func_num_args();
+        $parametrat=func_get_args();
         switch($nrParametrave){
           case 3:
               $this->constructor1($parametrat[0],$parametrat[1],$parametrat[2]);

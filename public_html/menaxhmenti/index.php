@@ -5,12 +5,13 @@
 
  $bootstrap="../../css/bootstrap.min.css";
  $css_includes="../../css/update.css";
- include(templates_dashboard_heade);
+ include(templates_dashboard_header);
  ?>
 
 
 <div style="position:absolute;left:200%;width:100%;top:30%;display:none;" id="shtofluturime">
-      <form action="shtofluturime.php" method="post">
+        <h2>Shto Fluturim</h2>
+       <form action="shtofluturime.php" method="post">
          <label for="origin">Prej:
           <input type="text" name="origin" id="origin">
          </label><br/>
@@ -27,7 +28,8 @@
       </form>
 </div>
 <div style="position:absolute;left:200%;width:100%;top:30%;display:none;" id="shtouser">
-      <form action="shtofluturime.php" method="post">
+       <h2>Shto user</h2>
+   <form action="shtofluturime.php" method="post">
          <label for="emri">Emri:
           <input type="text" name="emri" id="emri">
          </label><br/>
