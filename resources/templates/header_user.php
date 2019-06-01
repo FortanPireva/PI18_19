@@ -72,7 +72,7 @@
     
     <form class="form-inline my-2 my-lg-0" style="margin-left:20px;background:white">
        <img src="https://img.icons8.com/color/24/000000/gender-neutral-user.png">
-       <a class="nav-link" href="llogout.php">Log out</a>
+       <a class="nav-link" href="llogin.php">Log out</a>
     </form>
 
 
