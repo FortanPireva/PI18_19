@@ -10,10 +10,12 @@
   {
     $date=date('Y-m-d',strtotime($_POST['flight_date']));
     if(empty($_POST['flight_return'])){
+
       $flight=new Flight($_POST['origin'],$_POST['destination'],$date,$_POST['qmimi']);
       if(insertFlight($db,$flight))
        { 
             echo "Fluturimi u shtua me sukses";
+            header("Location:tabelaFluturimeve.php");   
            // header("Location:index.php");
        }
        else {
@@ -27,6 +29,7 @@
     if(insertFlight($db,$flight))
      { 
           echo "Fluturimi u shtua me sukses";
+          header("Location:tabelaFluturimeve.php");
          // header("Location:index.php");
      }
      else {
