@@ -11,7 +11,7 @@
  include(templates_dashboard_header);
  ?>
 <div style="position:absolute;left:150%;width:100%;top:0%;">
-<form method='Post' action="editoFluturimet.php">
+
                 <input type='hidden' id='udhetimiId' name='udhetimiId'>
                 <table class='tabela' cellspacing='0' style="align-items:center;">
                     <thead>
@@ -25,10 +25,10 @@
                 $rez = $db->getData("Select * From user  order by uid");
 
                 foreach ($rez as $rreshti) {
-                    echo "<tr><td>".$rreshti['emri']."</td><td>".$rreshti['mbiemri']."</td><td>".$rreshti['email']."</td><td>".$rreshti['isManager']."</td> <td style='text-align: center'>"                       
-                    . "<input type='submit' value='Edit' class='button button-small id-submit' id='id_".$rreshti['uid']."'></td><td><input type='submit' value='Delete' class='button button-small id-submit' id='id_".$rreshti['uid']."'></td></tr>";
+                    echo "<form method=\"POST\"><tr><td>".$rreshti['emri']."</td><td>".$rreshti['mbiemri']."</td><td>".$rreshti['email']."</td><td>".$rreshti['isManager']."</td><td><input type=\"hidden\" name=\"uid\" value=\"".$rreshti['uid']."\"></td> <td style='text-align: center'>"                       
+                    . "<input type='submit' formaction=\"editUser.php\" value='Edit' class='button button-small id-submit' id='id_".$rreshti['uid']."'></td>
+                    <td><input type='submit' value='Delete' formaction=\"deleteUser.php\" class='button button-small id-submit' id='id_".$rreshti['uid']."'></td></tr></form>";
                 }
                 ?>
                 </table>
-            </form>
 </div>
