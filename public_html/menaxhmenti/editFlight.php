@@ -9,8 +9,8 @@ include(databaza);
  if($_SERVER['REQUEST_METHOD']=="POST"){
     $id=$_POST['id'];
     echo $id;
-    $sql="SELECT * from flights where fid='$id';";
-    $rezultati=$db->getData($sql);
+    $sql="SELECT * from flights where fid=%d";
+    $rezultati=$db->getData($sql,$id);
     $origin=$rezultati[0]['origin'];
     $destination=$rezultati[0]['destination'];
     $flight_date=$rezultati[0]['flight_date'];

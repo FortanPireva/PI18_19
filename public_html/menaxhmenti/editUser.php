@@ -9,8 +9,8 @@ include(databaza);
  if($_SERVER['REQUEST_METHOD']=="POST"){
     $id=$_POST['uid'];
     echo $id;
-    $sql="SELECT * from user where uid='$id';";
-    $rezultati=$db->getData($sql);
+    $sql="SELECT * from user where uid=%d;";
+    $rezultati=$db->getData($sql,$id);
     $emri=$rezultati[0]['emri'];
     $mbiemri=$rezultati[0]['mbiemri'];
     $email=$rezultati[0]['email'];

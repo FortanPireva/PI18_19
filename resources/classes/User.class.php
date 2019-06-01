@@ -69,11 +69,10 @@ function insertUser($db,$user)
 {
     $salt=generateRandomString();
     $password=sha1('{user->getPassword()}'.$salt);
-    $sql="INSERT INTO user(emri,mbiemri,email,salt,isManager,password) VALUES('{$user->getEmri()}','{$user->getMbiemri()}','{$user->getEmail()}','$salt',{$user->getManager()},'$password');";
+    $sql="INSERT INTO user(emri,mbiemri,email,salt,isManager,password) VALUES(%s,%s,%s,%s,%s,%s)";
     echo $sql;
-   if($db->executeData($sql))
+   if($db->executeData($sql,$user->getEmri(),$user->getMbiemri(),$user->getEmail(),$salt,$user->getManager(),$password))
       return true; 
-
     return false;
 }
 function updateUser($db,$user,$kolona)

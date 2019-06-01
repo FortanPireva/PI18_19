@@ -37,7 +37,18 @@ class db_connector {
   public function getData($sql)
   {
     $this->connect();
-   
+
+    try {
+      if ($sql instanceof safe_query) {
+          $sql = $sql->merr_safe_string($this->connection);
+      } else if (func_num_args() > 1) {
+          $sql = (new safe_query(func_get_args()))->merr_safe_string($this->connection);
+      }
+  }
+  catch (Exception $e) {
+      $this->close_connection();
+      return array();
+  }
     $array = array();
       mysqli_real_escape_string($this->connection,$sql);
         $result = mysqli_query($this->connection, $sql);
@@ -53,10 +64,24 @@ class db_connector {
   public function executeData($sql){
     
     $this->connect();
-    mysqli_real_escape_string($this->connection,$sql);  
-    $result=mysqli_query($this->connection,$sql);
-    $this->close_connection();
-    return $result;
+       // Nese kemi safe_query ose me shume parametra provo merr safe string.
+       try {
+        if ($sql instanceof safe_query) {
+            $sql = $sql->merr_safe_string($this->connection);
+        } else if (func_num_args() > 1) {
+            $sql = (new safe_query(func_get_args()))->merr_safe_string($this->connection);
+    
+          }
+    }
+    catch (Exception $e) {
+        $this->close_connection();
+        return false;
+    }
+    echo $sql;
+    if (mysqli_query($this->connection, $sql)) {
+        return true;
+    }
+        return false;
   }
 
   public function connect()
@@ -78,7 +103,50 @@ class db_connector {
 
 
 };
-
+class safe_query {
+  private $sql;
+  private $parametrat;
+  public function __construct($sql) {
+      if (is_array($sql)) {
+          if (empty($sql)) throw new Exception("Krijim jo valid i safe query.");
+          $this->sql = array_shift($sql);
+          $this->parametrat = $sql;
+          return;
+      }
+      $this->sql = $sql;
+      $argumentet = func_get_args();
+      array_shift($argumentet);
+      $this->parametrat = $argumentet;
+  }
+  public function merr_safe_string($connection) {
+      $pattern = '/(?<!\\\)%(s|d)/';
+      $count = count($this->parametrat);
+      $i = 0;
+      $rez = preg_replace_callback(
+          $pattern,
+          function ($matches) use ($connection, $count, &$i) {
+              if ($i >= $count) {
+                  throw new Exception("Mosperputhje e parametrave tek $this->sql.");
+              }
+              $parametri = $this->parametrat[$i++];
+              switch ($matches[1])
+              {
+                  case 's':
+                      return "'" . mysqli_real_escape_string($connection, $parametri) . "'";
+                  case 'd':
+                      $pattern_numer = '/^\s*[+\-]?(?:\d+(?:\.\d+)?|\.\d+)\s*$/';
+                      if (preg_match($pattern_numer, $parametri)) {
+                          return $parametri;
+                      } else throw new Exception("Vlere jo numerike $parametri.");
+                  default:
+                      return $matches[0];
+              }
+          },
+          $this->sql);
+      
+      return str_replace("\%", "%", $rez);
+  }
+}
 
 
 

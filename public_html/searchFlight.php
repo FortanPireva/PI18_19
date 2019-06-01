@@ -116,7 +116,9 @@
             </div>
 
         </div>
+        
         <div style="color:orange;width:50%;margin:auto" id="tabela1">
+        <div style="position:relative;left:30%;font-size:30px;">5 fluturimet e Ardhshme</div>
             <form method='Post' action="<?php echo $_SERVER['PHP-SELF']?>">
                 <input type='hidden' id='udhetimiId' name='udhetimiId'>
                 <table class='tabela' cellspacing='0' style="align-items:center;">
@@ -140,13 +142,14 @@
         </div>
         <br/>
         <div style="color:orange;width:50%;margin:auto;display:block	;" id="tabela2">
-            
-                <input type='hidden' id='udhetimiId' name='udhetimiId'>
-                <table class='tabela' cellspacing='0' style="align-items:center;">
+            <div style="position:relative;left:30%;font-size:30px;">Fluturimet e Kerkuara</div>
+
+               <table class='tabela' cellspacing='0' style="align-items:center;">
                     <thead>
                         <th align='left'>Prej</th>
                         <th align='left'>Deri</th>
                         <th align='left'>Data</th>
+                        <th align="left">Data e Kthimit</th>
                         <th align="left">Qmimi</th>
                     </thead>
                     <?php 
@@ -174,16 +177,14 @@
 				$date=$_POST['date'];
 			  $date=date('Y-m-d',strtotime($_POST['date']));
 
-			  echo $origin." ".$destination." ".$date;
-			  $query="SELECT * FROM flights where origin='$origin'"."AND destination='$destination'"."AND flight_date='$date'";
+			  $query="SELECT * FROM flights where origin=%s AND destination=%s AND flight_date=%s";
             
-	$array=$db->getData($query);
-
+	           $array=$db->getData($query,$origin,$destination,$date);
 				if (is_array($array) || is_object($array))
 				{
 
 				foreach ($array as $key=>$rreshti) {
-                    echo "<form method=\"GET\" action=\"payment.php\"><tr><td>".$rreshti['origin']."</td><td>".$rreshti['destination']."</td><td>".$rreshti['flight_date']."</td><td>".$rreshti['Qmimi']."</td><td style='text-align: center'>"                       
+                    echo "<form method=\"GET\" action=\"payment.php\"><tr><td>".$rreshti['origin']."</td><td>".$rreshti['destination']."</td><td>".$rreshti['flight_date']."</td><td>".$rreshti['flight_return']."</td><td>".$rreshti['Qmimi']."</td><td style='text-align: center'>"                       
                     . "<input type='submit' name='paySubmit'  value='Rezervo' name class='button button-small id-submit' ></td><td><input type='hidden' name='rreshti' value=\"".$rreshti['fid']."\"> </tr></form>";
 					
 				}

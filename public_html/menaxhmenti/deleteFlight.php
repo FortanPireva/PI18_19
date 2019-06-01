@@ -7,9 +7,9 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
     $id=$_POST['id'];
     $db=new database();
 
-    $sql="DELETE FROM flights where fid=$id";
+    $sql="DELETE FROM flights where fid=%d";
 
-    if($db->executeData($sql))
+    if($db->executeData($sql,$id))
     {
         header("Location:tabelaFluturimeve.php");
     }
