@@ -31,12 +31,11 @@ if($_SERVER['REQUEST_METHOD']=="POST")
       $password=$_POST['password'];
       $query1="SELECT salt from user where email='$email'";
       $salt=$db->getData($query1);
-      $salt=implode(",",$salt[0]);
-      echo $salt."<br/>";
-      $password=sha1($salt.$password);
-      echo $password;
+      if(is_array($salt)&&!empty($salt)){
+         $salt=implode(",",$salt[0]);
+      $password=sha1($salt.$password);}
       $query="SELECT * FROM  user where email='$email' and password='$password';";    
-      
+
       $array=array();
       $array=$db->getData($query);
   if(count($array)>0)

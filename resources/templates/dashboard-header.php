@@ -71,8 +71,8 @@
             <li><a href="tabelaPerdoruesve.php">Users</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Mireseerdhe, Fortan</a></li>
-            <li><a href="login.html">Logout</a></li>
+            <li><a href="#">Mireseerdhe,Fortan</a></li>
+            <li><a href="../llogin.php">Logout</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
