@@ -11,7 +11,7 @@
 
 <div style="position:absolute;left:200%;width:100%;top:30%;display:none;" id="shtofluturime">
         <h2>Shto Fluturim</h2>
-       <form action="shtofluturime.php" method="post">
+       <form action="shtofluturim.php" method="post">
          <label for="origin">Prej:
           <input type="text" name="origin" id="origin">
          </label><br/>
@@ -25,11 +25,15 @@
           <label for="flight_return">Data e kthimit
           <input type="date" name="flight_return" id="flight_return"> 
           </label><br/>
+          <label>Qmimi
+          <input type="number" name="qmimi" required></label></br>
+          <input type="submit" name="submit" value="Krijo fluturim">
+          
       </form>
 </div>
 <div style="position:absolute;left:200%;width:100%;top:30%;display:none;" id="shtouser">
        <h2>Shto user</h2>
-   <form action="shtofluturime.php" method="post">
+   <form action="shtouser.php" method="post">
          <label for="emri">Emri:
           <input type="text" name="emri" id="emri">
          </label><br/>
@@ -41,8 +45,11 @@
           <input type="email"  name="email" id="email">
           </label><br/>
           <label for="password">Password:
-          <input type="password" name="password" id="password"> 
-          </label><br/>
+          <input type="password" name="password" id="password"> <br/>
+          <label for="radio">Shto si Menaxher</label>
+          <input type="radio" name="isManager" id="radio">
+         <br/>
+         <input type="submit" value="Krijo" name="submit">
       </form>
 </div>
 
