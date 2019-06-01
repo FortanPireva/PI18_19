@@ -2,7 +2,10 @@
   require('../resources/config.php');
   include(databaza);
  session_start();
- echo "faqja eshte vizituar nga email" .$_SESSION['email'];
+ if(!isset($_SESSION['email']) || !isset($_SESSION['password'])){
+    header("Location: llogin.php");
+  }
+
  $css_includes=Array("../css/index.css","../css/style.css","//fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600,600italic,700,700italic,800,800italic","//fonts.googleapis.com/css?family=Montserrat:400,700");
 
  include(header_user);
