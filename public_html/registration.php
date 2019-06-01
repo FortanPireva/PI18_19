@@ -16,10 +16,11 @@ function generateRandomString($length = 10) {
   }
   return $randomString;
 }
+
 $db=new database();
 echo $db->connect();
 
-$msgError=$email=$machErr="";
+$msgError=$email=$machErr=$passerror="";
 
 if($_SERVER['REQUEST_METHOD']=="POST")
 {
@@ -43,10 +44,16 @@ if($_SERVER['REQUEST_METHOD']=="POST")
       $password=$_POST['password'];
       $salt=generateRandomString();
       $password=sha1($salt.$password); 
+      $uppercase = preg_match('@[A-Z]@',$password);
+      $lowercase = preg_match('@[a-z]@',$password);
+      $number = preg_match('@[0-9]@',$password);
+      if(!$uppercase || !$lowercase || !$number || strlen($password)<8){
+        $passerror=("Paswordi duhet te permbaj 8 shkronja, shkronja te medhaja dhe numra!");
+      }
       $query="INSERT INTO user(emri,mbiemri,email,salt,isManager,password) VALUES('$emri','$mbiemri','$email','$salt',0,'$password')";  
       echo $query;  
       echo $db->executeData($query);
-     header("Location:llogin.php");
+    header("Location:llogin.php");
   }
 }
 
@@ -129,6 +136,7 @@ include_once(templates_header);
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
             <input type="password" name="password" placeholder="Password"  />
           </div>
+          <span class="error"> <?php echo  $passerror;?></span>
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
             <input type="password" name="passwordk" placeholder="Konfirmo Password-in"  />
           </div>
