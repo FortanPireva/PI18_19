@@ -140,7 +140,7 @@
         </div>
         <br/>
         <div style="color:orange;width:50%;margin:auto;display:block	;" id="tabela2">
-            <form method='POST' action="payment.php">
+            
                 <input type='hidden' id='udhetimiId' name='udhetimiId'>
                 <table class='tabela' cellspacing='0' style="align-items:center;">
                     <thead>
@@ -183,7 +183,7 @@
 				{
 
 				foreach ($array as $key=>$rreshti) {
-                    echo "<tr><td>".$rreshti['origin']."</td><td>".$rreshti['destination']."</td><td>".$rreshti['flight_date']."</td><td>".$rreshti['Qmimi']."</td><td style='text-align: center'>"                       
+                    echo "<form method=\"GET\" action=\"payment.php\"><tr><td>".$rreshti['origin']."</td><td>".$rreshti['destination']."</td><td>".$rreshti['flight_date']."</td><td>".$rreshti['Qmimi']."</td><td style='text-align: center'>"                       
                     . "<input type='submit' name='paySubmit'  value='Rezervo' name class='button button-small id-submit' ></td><td><input type='hidden' name='rreshti' value=\"".$rreshti['fid']."\"> </tr></form>";
 					
 				}
@@ -194,7 +194,7 @@
 	}
 		?>
                 </table>
-						</form>
+					
 						
         </div>
         <div class="footer-w3l">
