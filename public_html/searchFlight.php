@@ -2,8 +2,6 @@
   require('../resources/config.php');
   include(databaza);
  session_start();
- echo "faqja eshte vizituar nga email" .$_SESSION['email'];
-
 ?>
     <!DOCTYPE html>
     <html>

@@ -4,7 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <?php   if (isset($script_includes))
+    <?php   
+    session_start();
+    if(!isset($_SESSION['email']) || !isset($_SESSION['password'])){
+      header("Location:../llogin.php");
+    } 
+   
+    if (isset($script_includes))
     {
         if (is_array($script_includes))
         {
@@ -71,8 +77,8 @@
             <li><a href="tabelaPerdoruesve.php">Users</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Mireseerdhe,Fortan</a></li>
-            <li><a href="../llogin.php">Logout</a></li>
+            <li><a href="#">Mireseerdhe <?php echo $_SESSION['email']?></a></li>
+            <li><a href="../llogout.php">Logout</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
