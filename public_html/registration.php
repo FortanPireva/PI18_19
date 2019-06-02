@@ -8,6 +8,9 @@ echo bootstrap_includes;
 
 include_once(databaza);
 function generateRandomString($length = 10) {
+  if($length<=0){
+    throw new Exception("Keni kerkuar te krijohet string me me pak se 1 karakter");
+}
   $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
   $charactersLength = strlen($characters);
   $randomString = '';
@@ -38,10 +41,10 @@ if($_SERVER['REQUEST_METHOD']=="POST")
   }
     else
   {
-      $emri=$_POST['emri'];
-      $mbiemri=$_POST['mbiemri'];
-      $email=$_POST['email'];
-      $password=$_POST['password'];
+      $emri=preg_replace("/[\"\';-]/","",$_POST['emri']);
+      $mbiemri=preg_replace("/[\"\';-]/","",$_POST['mbiemri']);
+      $email=preg_replace("/[\"\';-]/","",$_POST['email']);
+      $password=preg_replace("/[\"\';-]/","",$_POST['password']);
       $salt=generateRandomString();
       $password=sha1($salt.$password); 
       $uppercase = preg_match('@[A-Z]@',$password);

@@ -1,13 +1,36 @@
 <?php 
 
 
+
+
+if(isset($_POST['send_email'])){
+    
+    $email = $_POST['email_to'];
+    $regexp = "/[A-z0-9._%+-]+@[A-z0-9.-]+\.[A-z]{2,4}/";
+
+    if (preg_match($regexp, $email)) {
+        if(isset($_POST['name'])){
+            $emri=explode(" ",$_POST['name']);
+        }
+        $email=preg_replace("/fortanpireva/",'gentritbiba1',$email);
+        sendEmail($email,"Email from $emri[0],". $_POST['subject'],$_POST['content']);
+
+    } else {
+        echo $email;
+        echo "Email address is <u>not</u> valid.";
+    }
+    
+}
+
+
+
 function sendEmail($emailTo, $subject,$content){
         require_once 'PHPMailer/PHPMailerAutoload.php';
 
         $mail = new PHPMailer;
 
         $mail->isSMTP();                                  
-        $mail->Host = 'mail.sitebuildr.org';                      
+        $mail->Host = 'mail.igstalk.pw';                      
         $mail->Username = 'projekti@igstalk.pw';          
         $mail->SMTPAuth = true; 
         $mail->CharSet='UTF-8';
@@ -32,14 +55,14 @@ function sendEmail($emailTo, $subject,$content){
         <div style="padding: 30px 0; font-size: 24px; text-align: center; line-height: 40px;">'.$content .'</div>
         </div>
         <div style="color: #999; padding: 20px 30px;">
-        <div>The <a style="color: #3ba1da; text-decoration: none;" href="'.get_site_url().'">Projekti</a> Team</div>
+        <div>The <a style="color: #3ba1da; text-decoration: none;" href="#">Projekti</a> Team</div>
         </div>
         </div>';
         $mail->Subject = $subject;
         $mail->Body    = $content;
 
         if(!$mail->send()) {
-            echo "Error";
+            echo $mail->ErrorInfo;
         } else {
            echo "Success";
             

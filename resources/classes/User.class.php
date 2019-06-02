@@ -115,6 +115,9 @@ $sql="SELECT * FROM user WHERE uid={$user->getUid()}";
 }
 
 function generateRandomString($length = 10) {
+    if($length<=0){
+        throw new Exception("Keni kerkuar te krijohet string me me pak se 1 karakter");
+    }
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
     $randomString = '';

@@ -124,7 +124,7 @@
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard
               </a>
               <a href="tabelaFluturimeve.php" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Fluturimet  <span class="badge">12</span></a>
-              <a href="posts.html" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Aeroplanet <span class="badge">33</span></a>
+              <a href="tabelaAeroplanet.php" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Aeroplanet <span class="badge">33</span></a>
               <a href="tabelaPerdoruesit.php" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Perdoruesit <span class="badge">203</span></a>
             </div>
 

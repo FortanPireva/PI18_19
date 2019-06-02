@@ -10,6 +10,7 @@
 
  include(header_user);
 ?>
+    <div class="container">
         <h1>Flight Ticket Booking</h1>
         <div class="main-agileinfo">
             <div class="sap_tabs">
@@ -205,10 +206,34 @@
 		<div>
             <a href="download.php?file=userTicket.txt">Shkarko te dhenat rreth biletes:</a>
 		</div>			
-						
+		<div class="row text-white">
+                    <div class="col-12">
+                    <form method="POST" action="functions.php">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input required type="email" name="email_to" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Your Name</label>
+                            <input required type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="" placeholder="Enter Your Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Subject</label>
+                            <input required type="text" name="subject" class="form-control" id="exampleInputEmail1" aria-describedby="" placeholder="Enter subject">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <textarea  required rows="10" class="form-control" id="exampleInputPassword1" name="content" placeholder="Write the content here"></textarea>
+                        </div>
+                        <button type="submit" name="send_email" class="btn btn-warning text-white">Submit</button>
+                        </form>
+                    </div>   
+                </div>
+            </div>				
         </div>
         <div class="footer-w3l">
             <p class="agileinfo"> &copy; 2016 Flight Ticket Booking . All Rights Reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+        </div>
         </div>
 
         <!--script for portfolio-->

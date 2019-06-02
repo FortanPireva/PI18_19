@@ -70,6 +70,19 @@
           </label><br/>
       </form>
 </div>
+<div style="position:absolute;left:200%;width:100%;top:100%;display:none;" id="shtoaeroplan">
+    <h1>Shto Aeroplan</h1>
+      <form action="shtoaeroplan.php" method="post">
+         <label for="emri">Emri i Aeroplanit:
+          <input type="text" name="aname" id="emri">
+         </label><br/>
+          <label for="mbiemri">Gjatesia e fluturimit:
+          <input type="number" name="cruisingrange" id="cruisingrange">
+          
+          </label><br/>
+          <input type="submit" name="submit" value="Shto">
+      </form>
+</div>
 <script>
 
   document.getElementById('fluturim').addEventListener('click',shtodiv1);
@@ -80,15 +93,19 @@
   {
         document.getElementById('shtofluturime').style.display="block";
         document.getElementById('shtouser').style.display="none";
+        document.getElementById('shtoaeroplan').style.display="none";
   }
   function shtodiv2()
   {
         document.getElementById('shtouser').style.display="block";
         document.getElementById('shtofluturime').style.display="none";
+        document.getElementById('shtoaeroplan').style.display="none";
   }
   function shtodiv3()
   {
-        document.getElementById('shtofluturime').style.display="block";
+        document.getElementById('shtofluturime').style.display="none";
+        document.getElementById('shtouser').style.display="none";
+        document.getElementById('shtoaeroplan').style.display="block";
         
   }
 
