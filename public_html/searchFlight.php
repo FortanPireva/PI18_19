@@ -2,34 +2,14 @@
   require('../resources/config.php');
   include(databaza);
  session_start();
- echo "faqja eshte vizituar nga email" .$_SESSION['email'];
+ if(!isset($_SESSION['email']) || !isset($_SESSION['password'])){
+    header("Location: llogin.php");
+  }
 
+ $css_includes=Array("../css/index.css","../css/style.css","//fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600,600italic,700,700italic,800,800italic","//fonts.googleapis.com/css?family=Montserrat:400,700");
+
+ include(header_user);
 ?>
-    <!DOCTYPE html>
-    <html>
-
-    <head>
-        <title>Flight Ticket Booking a Flat Responsive Widget Template :: w3layouts</title>
-        <link rel="stylesheet" href="../css/style.css">
-        <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-        <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-        <link href="../css/index.css" rel='stylesheet' type='text/css'>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="keywords" content="Flight Ticket Booking  Widget Responsive, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design" />
-        <script type="application/x-javascript">
-            addEventListener("load", function() {
-                setTimeout(hideURLbar, 0);
-            }, false);
-
-            function hideURLbar() {
-                window.scrollTo(0, 1);
-            }
-        </script>
-
-    </head>
-
-    <body>
         <h1>Flight Ticket Booking</h1>
         <div class="main-agileinfo">
             <div class="sap_tabs">
@@ -136,7 +116,9 @@
             </div>
 
         </div>
+        
         <div style="color:orange;width:50%;margin:auto" id="tabela1">
+        <div style="position:relative;left:30%;font-size:30px;">5 fluturimet e Ardhshme</div>
             <form method='Post' action="<?php echo $_SERVER['PHP-SELF']?>">
                 <input type='hidden' id='udhetimiId' name='udhetimiId'>
                 <table class='tabela' cellspacing='0' style="align-items:center;">
@@ -160,13 +142,14 @@
         </div>
         <br/>
         <div style="color:orange;width:50%;margin:auto;display:block	;" id="tabela2">
-            <form method='POST' action="payment.php">
-                <input type='hidden' id='udhetimiId' name='udhetimiId'>
-                <table class='tabela' cellspacing='0' style="align-items:center;">
+            <div style="position:relative;left:30%;font-size:30px;">Fluturimet e Kerkuara</div>
+
+               <table class='tabela' cellspacing='0' style="align-items:center;">
                     <thead>
                         <th align='left'>Prej</th>
                         <th align='left'>Deri</th>
                         <th align='left'>Data</th>
+                        <th align="left">Data e Kthimit</th>
                         <th align="left">Qmimi</th>
                     </thead>
                     <?php 
@@ -194,16 +177,14 @@
 				$date=$_POST['date'];
 			  $date=date('Y-m-d',strtotime($_POST['date']));
 
-			  echo $origin." ".$destination." ".$date;
-			  $query="SELECT * FROM flights where origin='$origin'"."AND destination='$destination'"."AND flight_date='$date'";
+			  $query="SELECT * FROM flights where origin=%s AND destination=%s AND flight_date=%s";
             
-	$array=$db->getData($query);
-
+	           $array=$db->getData($query,$origin,$destination,$date);
 				if (is_array($array) || is_object($array))
 				{
 
 				foreach ($array as $key=>$rreshti) {
-                    echo "<tr><td>".$rreshti['origin']."</td><td>".$rreshti['destination']."</td><td>".$rreshti['flight_date']."</td><td>".$rreshti['Qmimi']."</td><td style='text-align: center'>"                       
+                    echo "<form method=\"GET\" action=\"payment.php\"><tr><td>".$rreshti['origin']."</td><td>".$rreshti['destination']."</td><td>".$rreshti['flight_date']."</td><td>".$rreshti['flight_return']."</td><td>".$rreshti['Qmimi']."</td><td style='text-align: center'>"                       
                     . "<input type='submit' name='paySubmit'  value='Rezervo' name class='button button-small id-submit' ></td><td><input type='hidden' name='rreshti' value=\"".$rreshti['fid']."\"> </tr></form>";
 					
 				}
@@ -214,7 +195,7 @@
 	}
 		?>
                 </table>
-						</form>
+					
 						
         </div>
         <div class="footer-w3l">
@@ -284,6 +265,16 @@
                 });
             });
         </script>
+         <script type="application/x-javascript">
+            addEventListener("load", function() {
+                setTimeout(hideURLbar, 0);
+            }, false);
+
+            function hideURLbar() {
+                window.scrollTo(0, 1);
+            }
+        </script>
+
         <!-- //load-more -->
 
     </body>

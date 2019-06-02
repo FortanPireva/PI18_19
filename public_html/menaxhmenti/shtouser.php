@@ -19,7 +19,7 @@
       if(insertUser($db,$user))
        { 
             echo "Perdoruesi u shtua me sukses";
-            header("Location:index.php");
+          //  header("Location:index.php");
        }
        else {
            echo "fuck";

@@ -70,16 +70,9 @@
     </ul>
    
     
-       
-      
-      <form class="form-inline my-2 my-lg-0" style="margin-left:50px;background:white">
-    
-       <img src="https://img.icons8.com/metro/26/000000/administrator-male.png">
-           <a class="nav-link" href="registration.php">Regjistrohuni</a>
-    </form>
     <form class="form-inline my-2 my-lg-0" style="margin-left:20px;background:white">
        <img src="https://img.icons8.com/color/24/000000/gender-neutral-user.png">
-       <a class="nav-link" href="llogin.php">Hyr</a>
+       <a class="nav-link" href="llogout.php">Log out</a>
     </form>
 
 
