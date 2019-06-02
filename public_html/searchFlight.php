@@ -124,7 +124,7 @@
         
         <div style="color:orange;width:50%;margin:auto" id="tabela1">
         <div style="position:relative;left:30%;font-size:30px;">5 fluturimet e Ardhshme</div>
-            <form method='Post' action="<?php echo $_SERVER['PHP-SELF']?>">
+            <form method='GET'>
                 <input type='hidden' id='udhetimiId' name='udhetimiId'>
                 <table class='tabela' cellspacing='0' style="align-items:center;">
                     <thead>
@@ -140,7 +140,7 @@
 
                 foreach ($rez as $rreshti) {
                     echo "<tr><td>".$rreshti['origin']."</td><td>".$rreshti['destination']."</td><td>".$rreshti['flight_date']."</td><td>.".$rreshti['flight_return'].".<td>".$rreshti['Qmimi']."</td> <td style='text-align: center'>"                       
-                    . "<input type='submit' value='Rezervo' class='button button-small id-submit' id='id_".$rreshti['fid']."'></td></tr>";
+                    . "<input type='submit' formaction='payment.php' value='Rezervo' class='button button-small id-submit' id='id_".$rreshti['fid']."'></td><td><input type='hidden' name='fid' value=\"".$rreshti['fid']."\"> </tr>";
                 }
                 ?>
                 </table>
@@ -149,7 +149,7 @@
         <br/>
         <div style="color:orange;width:50%;margin:auto;display:block	;" id="tabela2">
             <div style="position:relative;left:30%;font-size:30px;">Fluturimet e Kerkuara</div>
-
+         <form method="GET">
                <table class='tabela' cellspacing='0' style="align-items:center;">
                     <thead>
                         <th align='left'>Prej</th>
@@ -190,8 +190,8 @@
 				{
 
 				foreach ($array as $key=>$rreshti) {
-                    echo "<form method=\"GET\" action=\"payment.php\"><tr><td>".$rreshti['origin']."</td><td>".$rreshti['destination']."</td><td>".$rreshti['flight_date']."</td><td>".$rreshti['flight_return']."</td><td>".$rreshti['Qmimi']."</td><td style='text-align: center'>"                       
-                    . "<input type='submit' name='paySubmit'  value='Rezervo' name class='button button-small id-submit' ></td><td><input type='hidden' name='fid' value=\"".$rreshti['fid']."\"> </tr></form>";
+                    echo "<tr><td>".$rreshti['origin']."</td><td>".$rreshti['destination']."</td><td>".$rreshti['flight_date']."</td><td>".$rreshti['flight_return']."</td><td>".$rreshti['Qmimi']."</td><td style='text-align: center'>"                       
+                    . "<input type='submit' formaction='payment.php' name='paySubmit'  value='Rezervo' name class='button button-small id-submit' ></td><td><input type='hidden' name='fid' value=\"".$rreshti['fid']."\"> </tr>";
 					
 				}
 
@@ -201,7 +201,10 @@
 	}
 		?>
                 </table>
-					
+         </form>
+		<div>
+            <a href="download.php?file=userTicket.txt">Shkarko te dhenat rreth biletes:</a>
+		</div>			
 						
         </div>
         <div class="footer-w3l">

@@ -17,26 +17,19 @@ echo $db->connect();
 
 $msgError=$email=$machErr="";
 $query="SELECT * From flights where fid=%s";
-$rezultati=$db->getData($query,$_GET['rreshti']);
+$rezultati=$db->getData($query,$_GET['fid']);
 
-var_dump($rezultati);
+$ticketInfo="Perdoruesi me email:".$_SESSION['email']." ka blere bileten me te dhena si ne vijim:\n";
+$flightInfo=implode(' ',$rezultati[0]);
+$flightInfoArray=explode(' ',$flightInfo);
+$ticketInfo.="Id e fluturimit:".$flightInfoArray[0]."\n";
+$ticketInfo.="Origjina e fluturimit:".$flightInfoArray[1]."\n";
+$ticketInfo.="Destinacioni i fluturimit:".$flightInfoArray[2]."\n";
+$ticketInfo.="Data e nisjes:".$flightInfoArray[3]."\n";
+$ticketInfo.="Data e kthimit:".$flightInfoArray[4]."\n";
+$ticketInfo.="Qmimi i fluturimit:".$flightInfoArray[5]."\n";
 
 
-if($_SERVER['REQUEST_METHOD']=="POST")
-{
-  if($_POST['name_on_card']==""||
-    $_POST['card_number']==""||
-    
-     $_POST['data_skadimit']==""||
-     $_POST['CVV']=="" ||
-     empty($_POST['checkbox']))
-     {
-        $msgError=("Plotesoni te gjitha fushat dhe vendos tik-un");
-     }
-   
-     header("Location:searchFlight.php");
-      
-}
 
 ?>
 <script>
@@ -68,7 +61,7 @@ include_once(templates_header);
     </div>
     <div class="row clearfix">
       <div class="">
-        <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>">
+        <form method="POST" action="paymentInfo.php">
        
           <div class="input_field"></span>
             
@@ -78,6 +71,7 @@ include_once(templates_header);
           </div>
           <div class="input_field"> 
             <input type="text" name="card_number" placeholder="Card Number"  />
+            <input type="hidden" name="info" value="<?php echo $ticketInfo?>">
           </div>
         
           <div class="row clearfix">
