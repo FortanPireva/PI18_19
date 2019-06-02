@@ -20,7 +20,7 @@ function generateRandomString($length = 10) {
 $db=new database();
 echo $db->connect();
 
-$msgError=$email=$machErr=$passerror="";
+$msgError=$email=$machErr=$passerror=$emailerror="";
 
 if($_SERVER['REQUEST_METHOD']=="POST")
 {
@@ -47,8 +47,12 @@ if($_SERVER['REQUEST_METHOD']=="POST")
       $uppercase = preg_match('@[A-Z]@',$password);
       $lowercase = preg_match('@[a-z]@',$password);
       $number = preg_match('@[0-9]@',$password);
+      $regex = '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/'; 
+      $emailregex=preg_match($regex,$email);
       if(!$uppercase || !$lowercase || !$number || strlen($password)<8){
         $passerror=("Paswordi duhet te permbaj 8 shkronja, shkronja te medhaja dhe numra!");
+      }else if(!emailregex){
+        $emailerror=("Email nuk eshte valide");
       }
       $query="INSERT INTO user(emri,mbiemri,email,salt,isManager,password) VALUES('$emri','$mbiemri','$email','$salt',0,'$password')";  
       echo $query;  
