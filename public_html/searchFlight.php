@@ -25,13 +25,17 @@
                             <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
                                 <div class="from">
                                     <h3>From</h3>
-                                    <input type="text" name="origin" class="city1" placeholder="Type Departure City" required="">
+                                    <input type="text" name="origin" class="city1" id="city1" placeholder="Type Departure City" required="">
+                                    <span id="suggestions"><span>
                                 </div>
                                 <div class="to">
                                     <h3>To</h3>
-                                    <input type="text" name="destination" class="city2" placeholder="Type Destination City" required="">
+                                    <input type="text" name="destination" class="city2" id="city2" placeholder="Type Destination City" required="">
+                                    <span id="suggestions2"></span>
                                 </div>
-                                <div class="clear"></div>
+                                <div class="clear">
+                                </div>
+
                                 <div class="date">
                                     <div class="depart">
                                         <h3>Depart</h3>
@@ -66,24 +70,25 @@
                                 </div>
                                 <div class="clear"></div>
 
-                                <input type="submit" value="Search Flights" id="searchFlight">
+                                <input type="submit" name="searchFlight" value="Search Flights" id="searchFlight">
                             </form>
                         </div>
                         <div class="tab-1 resp-tab-content oneway">
-                            <form action="#" method="post">
+                            <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
                                 <div class="from">
                                     <h3>From</h3>
-                                    <input type="text" name="city" class="city1" placeholder="Type Departure City" required="">
+                                    <input type="text" name="origin" class="city1"  id="city11" placeholder="Type Departure City" required="">
+                                    <span id="suggestions"><span>
                                 </div>
                                 <div class="to">
                                     <h3>To</h3>
-                                    <input type="text" name="city" class="city2" placeholder="Type Destination City" required="">
+                                    <input type="text" name="destination" class="city2" id="city22" placeholder="Type Destination City" required="">
                                 </div>
                                 <div class="clear"></div>
                                 <div class="date">
                                     <div class="depart">
                                         <h3>Depart</h3>
-                                        <input class="date" id="datepicker2" name="Text" type="text" value="mm/dd/yyyy" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required="">
+                                        <input class="date" id="datepicker2" name="date" type="text" value="mm/dd/yyyy" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required="">
                                         <span class="checkbox1">
 										<label class="checkbox"><input type="checkbox" name="" checked=""><i> </i>Flexible with date</label>
 									</span>
@@ -126,6 +131,7 @@
                         <th align='left'>Prej</th>
                         <th align='left'>Deri</th>
                         <th align='left'>Data</th>
+                        <th align="left">Data e Kthimit</td>
                         <th align="left">Qmimi</th>
                     </thead>
                     <?php 
@@ -133,7 +139,7 @@
                 $rez = $db->getData("Select * From flights Where flight_date >= Now() order by flight_date Limit 5");
 
                 foreach ($rez as $rreshti) {
-                    echo "<tr><td>".$rreshti['origin']."</td><td>".$rreshti['destination']."</td><td>".$rreshti['flight_date']."</td><td>".$rreshti['Qmimi']."</td> <td style='text-align: center'>"                       
+                    echo "<tr><td>".$rreshti['origin']."</td><td>".$rreshti['destination']."</td><td>".$rreshti['flight_date']."</td><td>.".$rreshti['flight_return'].".<td>".$rreshti['Qmimi']."</td> <td style='text-align: center'>"                       
                     . "<input type='submit' value='Rezervo' class='button button-small id-submit' id='id_".$rreshti['fid']."'></td></tr>";
                 }
                 ?>
@@ -185,7 +191,7 @@
 
 				foreach ($array as $key=>$rreshti) {
                     echo "<form method=\"GET\" action=\"payment.php\"><tr><td>".$rreshti['origin']."</td><td>".$rreshti['destination']."</td><td>".$rreshti['flight_date']."</td><td>".$rreshti['flight_return']."</td><td>".$rreshti['Qmimi']."</td><td style='text-align: center'>"                       
-                    . "<input type='submit' name='paySubmit'  value='Rezervo' name class='button button-small id-submit' ></td><td><input type='hidden' name='rreshti' value=\"".$rreshti['fid']."\"> </tr></form>";
+                    . "<input type='submit' name='paySubmit'  value='Rezervo' name class='button button-small id-submit' ></td><td><input type='hidden' name='fid' value=\"".$rreshti['fid']."\"> </tr></form>";
 					
 				}
 
@@ -228,7 +234,7 @@
             function showtable() {
 
                 document.getElementById("tabela2").style.display = "block";
-								document.getElementById("tabela1").style.display = "none";
+				document.getElementById("tabela1").style.display = "none";
 
             }
         </script>
@@ -262,6 +268,73 @@
                 $('#showLess').click(function() {
                     x = (x - 1 < 0) ? 1 : x - 1;
                     $('#myList li').not(':lt(' + x + ')').hide();
+                });
+                $('#city1').keyup(function()
+             {
+                 var query=$(this).val();
+                 console.log(query);
+                 if(query!='')
+                 {
+                     $.ajax({
+                         url:"search.php",
+                         method:"POST",
+                         data:{query:query},
+                         success:function(data){
+                             $('#suggestions').fadeIn();
+                             $('#suggestions').html(data);
+                         }
+                     })
+                 }
+               
+                });
+                $('#city2').keydown(function()
+                 {
+                     var $query1=$('#city1').val();
+                     console.log($query1);
+                     $.ajax({
+                         url:"search.php",
+                         method:"POST",
+                         data:{query1:$query1},
+                         success:function(data){
+                             $('#suggestions2').fadeIn();
+                             $('#suggestions2').html(data);
+                         }
+                     })
+                     
+                 })
+                $(document).on('click','li.origin',function()
+                {
+                    $('#city1').val($(this).text());
+                    $("#suggestions").fadeOut();
+                });
+                $(document).on('click','li.destination',function()
+                {
+                    $('#city2').val($(this).text());
+                    $("#suggestions2").fadeOut();
+                });
+
+                $('#city11').keyup(function()
+             {
+                 var query=$(this).val();
+                 console.log(query);
+                 if(query!='')
+                 {
+                     $.ajax({
+                         url:"search.php",
+                         method:"POST",
+                         data:{query:query},
+                         success:function(data){
+                             $('#suggestions1').fadeIn();
+                             $('#suggestions1').html(data);
+                         }
+                     })
+                 }
+                    
+                });
+                $(document).on('click','li',function()
+                {
+                    $('#city11').val($(this).text());
+                    $("#suggestions1").fadeOut();
                 });
             });
         </script>

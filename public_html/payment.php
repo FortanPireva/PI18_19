@@ -9,13 +9,18 @@ include_once(databaza);
 session_start();
 if(!isset($_SESSION['email']) || !isset($_SESSION['password'])){
   header("Location: llogin.php");
-}
+}     
 
 
 $db=new database();
 echo $db->connect();
 
 $msgError=$email=$machErr="";
+$query="SELECT * From flights where fid=%s";
+$rezultati=$db->getData($query,$_GET['rreshti']);
+
+var_dump($rezultati);
+
 
 if($_SERVER['REQUEST_METHOD']=="POST")
 {
