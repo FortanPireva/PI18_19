@@ -47,7 +47,7 @@ h1{
 }
 .main-agileinfo{
 	margin:50px auto;
-	width:50%;
+	width:auto;
 }
 /*--SAP--*/
 .sap_tabs{
@@ -353,12 +353,12 @@ form.blackbg{
 }
  @media (max-width:1366px){
 	.main-agileinfo {
-		width: 53%;
+		width: auto;
 	}
 }
  @media (max-width:1280px){
 	.main-agileinfo {
-		width: 57%;
+		width: auto;
 	}
 }
  @media (max-width:1080px){
@@ -367,12 +367,12 @@ form.blackbg{
 		font-size: 47px;
 	}
 	.main-agileinfo {
-		width: 68%;
+		width: auto;
 	}
 }
  @media (max-width:1024px){
 	.main-agileinfo {
-		width: 71%;
+		width: auto;
 	}
 }
  @media (max-width:991px){
@@ -386,7 +386,7 @@ form.blackbg{
 }
  @media (max-width:966px){
 	.main-agileinfo {
-		width: 73%;
+		width: auto;
 	}
 	
 }
@@ -397,12 +397,12 @@ form.blackbg{
 }
  @media (max-width:800px){
 	.main-agileinfo {
-		width: 81%;
+		width: auto;
 	}
 }
  @media (max-width:768px){
 	.main-agileinfo {
-		width: 85%;
+		width: auto;
 	}
 	.checkbox i {
 		width: 15px;
@@ -415,7 +415,7 @@ form.blackbg{
 }
  @media (max-width:736px){
 	.main-agileinfo {
-		width: 88%;
+		width: auto;
 		margin:40px auto;
 	}
 	h1 {
